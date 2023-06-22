@@ -5561,7 +5561,7 @@
   border-radius: 50%;
   line-height: 30px;
   text-align: center;
-  background: #3b5998;
+  background: #1b7540;
 }
 
 .w3l-team-main-6 .at-social li a span.fa {
@@ -17980,4 +17980,8 @@ h3.color-white {
     font-size: 32px;
     line-height: 42px;
   }
+}
+.logo {
+  width: 100px;
+  position: relative;
 }
