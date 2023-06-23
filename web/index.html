@@ -17,31 +17,142 @@
 </head>
 
 <body id="home">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
 
-  <script>
-    (function () {
-      if (typeof _bsa !== 'undefined' && _bsa) {
-        // format, zoneKey, segment:value, options
-        _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+
+    #w3lDemoBar.w3l-demo-bar {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      padding: 40px 5px;
+      padding-top: 70px;
+      margin-bottom: 70px;
+      background: #0D1326;
+      border-top-left-radius: 9px;
+      border-bottom-left-radius: 9px;
+    }
+
+    #w3lDemoBar.w3l-demo-bar a {
+      display: block;
+      color: #e6ebff;
+      text-decoration: none;
+      line-height: 24px;
+      opacity: .6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #w3lDemoBar.w3l-demo-bar span.w3l-icon {
+      display: block;
+    }
+
+    #w3lDemoBar.w3l-demo-bar a:hover {
+      opacity: 1;
+    }
+
+    #w3lDemoBar.w3l-demo-bar .w3l-icon svg {
+      color: #e6ebff;
+    }
+
+    #w3lDemoBar.w3l-demo-bar .responsive-icons {
+      margin-top: 30px;
+      border-top: 1px solid #41414d;
+      padding-top: 40px;
+    }
+
+    #w3lDemoBar.w3l-demo-bar .demo-btns {
+      border-top: 1px solid #41414d;
+      padding-top: 30px;
+    }
+
+    #w3lDemoBar.w3l-demo-bar .responsive-icons a span.fa {
+      font-size: 26px;
+    }
+
+    #w3lDemoBar.w3l-demo-bar .no-margin-bottom {
+      margin-bottom: 0;
+    }
+
+    .toggle-right-sidebar span {
+      background: #0D1326;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: #e6ebff;
+      border-radius: 50px;
+      font-size: 26px;
+      cursor: pointer;
+      opacity: .5;
+    }
+
+    .pull-right {
+      float: right;
+      position: fixed;
+      right: 0px;
+      top: 70px;
+      width: 90px;
+      z-index: 99999;
+      text-align: center;
+    }
+
+    @media (max-width: 992px) {
+      #w3lDemoBar.w3l-demo-bar a.desktop-mode {
+        display: none;
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      if (typeof _bsa !== 'undefined' && _bsa) {
-        // format, zoneKey, segment:value, options
-        _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+    }
+
+    @media (max-width: 767px) {
+      #w3lDemoBar.w3l-demo-bar a.tablet-mode {
+        display: none;
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      if (typeof _bsa !== 'undefined' && _bsa) {
-        // format, zoneKey, segment:value, options
-        _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+    }
+
+    @media (max-width: 568px) {
+      #w3lDemoBar.w3l-demo-bar a.mobile-mode {
+        display: none;
       }
-    })();
-  </script>
+
+      #w3lDemoBar.w3l-demo-bar .responsive-icons {
+        margin-top: 0px;
+        border-top: none;
+        padding-top: 0px;
+      }
+
+      #right-sidebar,
+      .pull-right {
+        width: 90px;
+      }
+
+      #w3lDemoBar.w3l-demo-bar .no-margin-bottom-mobile {
+        margin-bottom: 0;
+      }
+    }
+
+    .w3l-header-4 a.btn-style {
+      padding: 0px 30px;
+      color: #fff;
+      height: 65px;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 65px;
+      text-transform: capitalize;
+      font-weight: 700;
+      transition: 0.3s ease-in;
+      background-color: #073b0f;
+      border: none;
+      border-radius: 0px;
+    }
+
+    .w3l-header-4 .navbar-nav .nav-item.active .nav-link {
+      color: #021a09;
+    }
+  </style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src='https://www.googletagmanager.com/gtag/js?id=G-98H8KRKT85'></script>
   <script>
@@ -362,6 +473,18 @@
       </div>
     </section>
 
+    <section class="w3l-clients" id="client">
+      <div class="main-w3 text-center">
+        <div class="container">
+          <div class="cover-back">
+            <h3>Our worldwide integration partner work with long time relationship</h3>
+            <p class="para">Consectetur adipisicing elit. Fuga nostrum dicta labor dolor emque laboriosam facilis
+              voluptatum debitis aliquam qui explicabo a, hic ullam tempora obcaecati.</p>
+            <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="w3l-covers-18">
       <div class="covers-main editContent">
         <div class="container">
@@ -393,28 +516,32 @@
       </div>
       </div>
     </section>
-
-    <section class="w3l-clients" id="client">
-      <div class="main-w3 text-center">
+    <section class="w3l-about">
+      <div class="skills-bars editContent counter-width text-center">
         <div class="container">
-          <div class="cover-back">
-            <h3>Our worldwide integration partner work with long time relationship</h3>
-            <p class="para">Consectetur adipisicing elit. Fuga nostrum dicta labor dolor emque laboriosam facilis
-              voluptatum debitis aliquam qui explicabo a, hic ullam tempora obcaecati.</p>
-            <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+          <div class="cover-back img-thumbnail p-3">
+            <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
+            <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special
+              offers.</p>
+            <form action="/subscribe" method="post">
+              <input type="email" class="form-control mt-3" id="exampleFormControlInput1"
+                placeholder="name@example.com">
+              <button type="submit" class="btn btn-success m-3">Subscribe!</button>
+            </form>
           </div>
         </div>
       </div>
     </section>
-
     <section class="w3l-footer-29-main">
       <div class="footer-29 py-5">
         <div class="container">
           <div class="row footer-top-29">
             <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
               <div class="left-side">
-                <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
-                      alt="Molseka logo"></span>MOLSEKA <span><p class="para">Global Investment Company Ltd.</p></span></a></h2>
+                <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left"
+                        src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
+                      <p class="para">Global Investment Company Ltd.</p>
+                    </span></a></h2>
                 <p class="para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe qui repellat nam vero
                   consectetur dicta eos suscipit. Numquam at minus architecto asperiores cupiditate. At molestias
                   laborum voluptatibus numquam aperiam in.</p>
@@ -423,30 +550,30 @@
             <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">About</h6>
-                <li><a href="#page">How it Works</a></li>
-                <li><a href="#page">Guarantee</a></li>
-                <li><a href="#page">Security</a></li>
-                <li><a href="#page"> Our story</a></li>
-                <li><a href="#page">Contact us</a></li>
+                <li><a href="services.html">How it Works</a></li>
+                <li><a href="services.html">Guarantee</a></li>
+                <li><a href="services.html">Security</a></li>
+                <li><a href="services.html">Our story</a></li>
+                <li><a href="contact.html">Contact us</a></li>
               </ul>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">Solution</h6>
-                <li><a href="#page">Car Loan</a></li>
-                <li><a href="#page">Personal Loan</a></li>
-                <li><a href="#page">Education Loan</a></li>
-                <li><a href="#page">Business Loan</a></li>
-                <li><a href="#page">Home Loan</a></li>
+                <li><a href="services.html">Car Loan</a></li>
+                <li><a href="services.html">Personal Loan</a></li>
+                <li><a href="services.html">Education Loan</a></li>
+                <li><a href="services.html">Business Loan</a></li>
+                <li><a href="services.html">Home Loan</a></li>
               </ul>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">Need Help?</h6>
-                <li><a href="#page">Find a branch</a></li>
-                <li><a href="#page">FAQs</a></li>
-                <li><a href="#page">APR</a></li>
-                <li><a href="#page">Contact us</a></li>
+                <li><a href="contact.html">Find a branch</a></li>
+                <li><a href="about.html">FAQs</a></li>
+                <li><a href="contact.html">APR</a></li>
+                <li><a href="contact.html">Contact us</a></li>
               </ul>
             </div>
           </div>
@@ -455,7 +582,8 @@
     <section class="w3l-footer-29-main w3l-copyright">
       <div class="container">
         <div class=" bottom-copies text-center">
-          <p class="copy-footer-29">&copy; 2023 Molseka Management and Consulting Service Limited. All rights reserved. | Designed by <a href="mailto:amedujosepho@gmail.com">Cresthold Institute of Technology</a></p>
+          <p class="copy-footer-29">&copy; 2023 Molseka Management and Consulting Service Limited. All rights reserved.
+            | Designed by <a href="mailto:amedujosepho@gmail.com">Cresthold Institute of Technology</a></p>
         </div>
       </div>
     </section>
@@ -487,8 +615,5 @@
 
     <script>(function () { var js = "window['__CF$cv$params']={r:'7dacc35bbc9f06f3',m:'D9tpWirvxZFSjZilEk35pov3jZJw4Aibnr04_N1mtoA-1687355873-0-Ab1ZX5PxpjSWPledGElVf96GRa1ngUoktjIEkErwVrZA'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../../../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/19ad4730/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);"; var _0xh = document.createElement('iframe'); _0xh.height = 1; _0xh.width = 1; _0xh.style.position = 'absolute'; _0xh.style.top = 0; _0xh.style.left = 0; _0xh.style.border = 'none'; _0xh.style.visibility = 'hidden'; document.body.appendChild(_0xh); function handler() { var _0xi = _0xh.contentDocument || _0xh.contentWindow.document; if (_0xi) { var _0xj = _0xi.createElement('script'); _0xj.nonce = ''; _0xj.innerHTML = js; _0xi.getElementsByTagName('head')[0].appendChild(_0xj); } } if (document.readyState !== 'loading') { handler(); } else if (window.addEventListener) { document.addEventListener('DOMContentLoaded', handler); } else { var prev = document.onreadystatechange || function () { }; document.onreadystatechange = function (e) { prev(e); if (document.readyState !== 'loading') { document.onreadystatechange = prev; handler(); } }; } })();</script>
   </body>
-
-
-  <!-- Mirrored from p.w3layouts.com/demos_new/template_demo/29-04-2020/easy_cash-liberty-demo_Free/1955832306/web/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Jun 2023 13:58:01 GMT -->
 
 </html>
