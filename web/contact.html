@@ -17,7 +17,24 @@
 </head>
 
 <body id="home">
+  <div id="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <script>
+    window.addEventListener('scroll', function () {
+      var socialIcons = document.getElementById('social-icons');
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+      if (scrollTop > 100) {
+        socialIcons.style.opacity = '1';
+      } else {
+        socialIcons.style.opacity = '0';
+      }
+    });
+
+  </script>
   <script>
     (function () {
       if (typeof _bsa !== 'undefined' && _bsa) {
@@ -226,6 +243,7 @@
           </div>
         </div>
     </section>
+
     <section class="w3l-footer-29-main">
       <div class="footer-29 py-5">
         <div class="container">
@@ -236,7 +254,8 @@
                         src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
                       <p class="para">Global Investment Company Ltd.</p>
                     </span></a></h2>
-                <p class="para">We help you unlock your financial potential. Our innovative solutions, expert guidance, and personalized services ensure your investments thrive and
+                <p class="para">We help you unlock your financial potential. Our innovative solutions, expert guidance,
+                  and personalized services ensure your investments thrive and
                   your wealth grows for a secure future.</p>
               </div>
             </div>

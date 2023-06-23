@@ -17,6 +17,24 @@
 </head>
 
 <body id="home">
+  <div id="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <script>
+    window.addEventListener('scroll', function () {
+      var socialIcons = document.getElementById('social-icons');
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > 100) {
+        socialIcons.style.opacity = '1';
+      } else {
+        socialIcons.style.opacity = '0';
+      }
+    });
+
+  </script>
   <style>
     * {
       box-sizing: border-box;
@@ -410,14 +428,6 @@
                   Leverage our expert investment advisory services to make informed financial decisions. Our team of
                   professionals provides personalized guidance and strategies tailored to your goals, ensuring optimal
                   returns and long-term success.</p>
-              </div>
-              <div class="nature-row editContent">
-                <h5><a href="blog.html">
-                    Gain Insight with Portfolio Analysis and Reporting</a></h5>
-                <p class="para editContent text ">
-                  Make informed investment decisions with our portfolio analysis and reporting services. Gain valuable
-                  insights into your investments, track performance, and optimize your portfolio for maximum returns.
-                </p>
               </div>
             </div>
             <div class="column2 image-text col-lg-6">
