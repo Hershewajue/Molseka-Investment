@@ -17985,19 +17985,3 @@ h3.color-white {
   width: 120px;
   position: relative;
 }
-#social-icons {
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  z-index: 9999;
-}
-
-#social-icons a {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#social-icons i {
-  font-size: 30px;
-}
