@@ -1,27 +1,34 @@
 <?php
-// Assuming you have already established a database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "molseka_investments";
+require_once('connect.php');
+// Number of posts to display per page
+$postsPerPage = 6;
 
-// Create a new PDO instance
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+// Get the current page from the query string
+if (isset($_GET['page'])) {
+  $currentPage = $_GET['page'];
+} else {
+  $currentPage = 1;
 }
 
-// Fetch blog posts from the database
-$stmt = $pdo->prepare("SELECT * FROM blog_posts");
-$stmt->execute();
-$blogPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Calculate the starting index of the posts for the current page
+$startIndex = ($currentPage - 1) * $postsPerPage;
 
-// Return the JSON response
-header("Content-Type: application/json");
-echo json_encode($blogPosts);
+// Fetch blog posts for the current page from the database
+$stmtFetch = $pdo->prepare("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT :start, :limit");
+$stmtFetch->bindValue(':start', $startIndex, PDO::PARAM_INT);
+$stmtFetch->bindValue(':limit', $postsPerPage, PDO::PARAM_INT);
+$stmtFetch->execute();
+$blogPosts = $stmtFetch->fetchAll(PDO::FETCH_ASSOC);
+
+// Count the total number of blog posts
+$stmtCount = $pdo->prepare("SELECT COUNT(*) FROM blog_posts");
+$stmtCount->execute();
+$totalPosts = $stmtCount->fetchColumn();
+
+// Calculate the total number of pages
+$totalPages = ceil($totalPosts / $postsPerPage);
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -133,293 +140,74 @@ echo json_encode($blogPosts);
     <div class="services-layout editContent">
       <div class="container">
         <div class="main-titles-head">
-          <h3 class="header-name editContent">
+          <h3 class="header-name">
             Our Awesome Blog Page
           </h3>
-          <p class="tiltle-para editContent editContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+          <p class="tiltle-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
             fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
         </div>
         <div class="row">
-          <div class="col-lg-6 blog-gap-top propClone">
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b5.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
+          <?php if (count($blogPosts) > 0) {
+            foreach ($blogPosts as $row) {
+              // Limit the content to 30 words
+              $content = implode(' ', array_slice(explode(' ', $row['content']), 0, 30));
+              $content .= '...';
+              // Extract only the date from the created_at column
+              $date = date('Y-m-d', strtotime($row['created_at']));
+              ?>
+              <div class="col-lg-6 blog-gap-top propClone">
+                <div class="image-up">
+                  <a href="blog-single.php?id=<?php echo $row['id']; ?>">
+                    <img alt="Post Image" src="uploads/<?php echo $row['post_img']; ?>" class="img-responsive">
+                  </a>
+                  <div class="blog-post editContent">
+                    <ul>
+                      <li class="propClone mr-3">
+                        <p class="blog-para price"><span class="fa fa-user"></span><a href="#page">Admin</a>
+                        </p>
+                      </li>
+                      <li class="propClone mr-3">
+                        <p class="blog-para price"><span class="fa fa-calendar"></span><?php echo $date; ?></p>
+                      </li>
+                      <li class="propClone">
+                        <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (07)</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <p class="blog-para price"><span class="fa fa-calendar"></span><?php echo $date; ?></p>
+                  <h3><a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog"><?php echo $row['title']; ?></a></h3>
+                  <p class="para"><?php echo $content; ?></p>
+                  <a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog-btn btn">Read More</a>
+                </div>
               </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Tationem cum minus volup tatum repreh
-                  enderit </a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
+            <?php }
+          } else { ?>
+            <div class="col-md-12 text-center">
+              <p>No blog posts found.</p>
             </div>
-          </div>
-          <div class="col-lg-6 blog-gap-top propClone">
-
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b7.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Laborum nostrum itaque veritatis exerci
-                  onem cum minus </a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
-            </div>
-          </div>
-          <div class="col-lg-6 blog-gap-top propClone">
-
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b6.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Error non natus assumenda. Laborum,
-                  nostrum itaque</a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
-            </div>
-          </div>
-          <div class="col-lg-6 blog-gap-top propClone">
-
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b4.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Illum error non natus assumenda nostrum
-                  itaque veritatis</a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
-            </div>
-          </div>
-          <div class="col-lg-6 blog-gap-top propClone">
-
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b1.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Tationem cum minus volup tatum repreh
-                  enderit </a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
-            </div>
-          </div>
-          <div class="col-lg-6 blog-gap-top propClone">
-
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="assets/images/b2.jpg" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">Nostrum itaque veritatis ab exerci tation
-                  cum minus</a>
-              </h3>
-              <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
-                veritatis ab exercitationem cum minus voluptatum reprehenderit qui placeat aspernatur</p>
-
-            </div>
-          </div>
+          <?php } ?>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="w3l-bootstrap-blog-list">
+    <div class="infinite-scroll">
       <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center mt-sm-5 mt-4 mb-0">
-          <li class="page-item disabled">
-            <a class="page-link page-prev" href="#previous" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link page-number" href="#1">1</a></li>
-          <li class="page-item active"><a class="page-link page-number" href="#2">2</a></li>
-          <li class="page-item"><a class="page-link page-number" href="#3">3</a></li>
-          <li class="page-item"><a class="page-link page-next" href="#next">→</a></li>
+        <ul class="pagination justify-content-center">
+          <?php if ($currentPage > 1) { ?>
+            <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage - 1); ?>">Previous</a></li>
+          <?php } ?>
+          <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
+            <li class="page-item <?php if ($i == $currentPage) echo "active"; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+          <?php } ?>
+          <?php if ($currentPage < $totalPages) { ?>
+            <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage + 1); ?>">Next</a></li>
+          <?php } ?>
         </ul>
       </nav>
     </div>
-    </div>
   </section>
-  //blog block
-
-  <!-- blog block 
-  <section class="w3l-services-6">
-    <div class="services-layout editContent">
-      <div class="container">
-        <div class="main-titles-head">
-          <h3 class="header-name editContent">
-            Our Awesome Blog Page
-          </h3>
-          <p class="tiltle-para editContent editContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
-            fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
-        </div>
-        <div id="blogContainer" class="row"></div>
-        <nav id="pagination" aria-label="Page navigation example">
-          <ul class="pagination justify-content-center mt-sm-5 mt-4 mb-0">
-            <li class="page-item disabled">
-              <a class="page-link page-prev" href="#previous" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link page-number" href="#1">1</a></li>
-            <li class="page-item active"><a class="page-link page-number" href="#2">2</a></li>
-            <li class="page-item"><a class="page-link page-number" href="#3">3</a></li>
-            <li class="page-item"><a class="page-link page-next" href="#next">→</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Variables to keep track of the current page and number of posts per page
-    let currentPage = 1;
-    const postsPerPage = 6;
-
-    // Function to fetch and append blog posts
-    function fetchBlogPosts() {
-      // Send a request to your backend API with the current page and postsPerPage values
-      fetch(`http://localhost:3000/api/blog?page=${currentPage}&limit=${postsPerPage}`)
-        .then(response => response.json())
-        .then(data => {
-          const blogContainer = document.getElementById('blogContainer');
-
-          // Loop through the retrieved blog posts and append them to the container
-          data.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.classList.add('col-lg-6', 'blog-gap-top', 'propClone');
-            postElement.innerHTML = `
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="${post.image}" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> ${post.date}</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( ${post.commentsCount} )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">${post.title}</a></h3>
-              <p class="para mt-3">${post.content}</p>
-            </div>
-          `;
-            blogContainer.appendChild(postElement);
-          });
-
-          // Update the pagination links
-          const pagination = document.getElementById('pagination');
-          const pageLinks = pagination.getElementsByClassName('page-number');
-          for (let i = 0; i < pageLinks.length; i++) {
-            pageLinks[i].setAttribute('href', `#${i + 1}`);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching blog posts:', error);
-        });
-    }
-
-    // Function to handle page navigation
-    function navigateToPage(page) {
-      currentPage = page;
-      fetchBlogPosts();
-    }
-
-    // Event listener for page number clicks
-    const pageLinks = document.getElementsByClassName('page-number');
-    for (let i = 0; i < pageLinks.length; i++) {
-      pageLinks[i].addEventListener('click', function (event) {
-        event.preventDefault();
-        const page = parseInt(this.getAttribute('href').substring(1));
-        navigateToPage(page);
-      });
-    }
-
-    // Fetch initial blog posts on page load
-    fetchBlogPosts();
-  </script>
-   //blog block -->
+  <!--blog block -->
 
   <!-- /team-grids -->
   </section>

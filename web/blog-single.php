@@ -1,3 +1,23 @@
+<?php
+require_once('connect.php');
+
+$id = $_GET['id'];
+
+// Fetch blog post from the database using the provided id
+$stmtFetch = $pdo->prepare("SELECT * FROM blog_posts WHERE id = :id");
+$stmtFetch->bindValue(':id', $id, PDO::PARAM_INT);
+$stmtFetch->execute();
+
+$blogPost = $stmtFetch->fetch(PDO::FETCH_ASSOC);
+
+// Check if a blog post is found
+if ($blogPost) {
+  // Extract only the date from the created_at column
+  $date = date('Y-m-d', strtotime($blogPost['created_at']));
+  // Limit the content to 30 words
+  $content = $blogPost['content'];
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -120,93 +140,73 @@
         <div class="container">
           <!-- left side blog post content -->
           <div class="single-left">
-            <div class="single-left1 box13">
-              <a href="blog-single.php"><img src="assets/images/b1.jpg" alt=" " class="img-responsive" /></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a></p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> 20 may 2020</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( 07 )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3 class="card-title"><a href="blog-single.php">FCA announces new proposals to protect millions using
-                  overdrafts and high-cost credit</a></h3>
-
-              <p class="para">Fermentum viverra eros. Praesent neque purus, rhoncus nec nibh non, mollis sodales odio.
-                Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue. Fermentum viverra eros. Praesent neque
-                purus, rhoncus nec nibh non, mollis sodales odio.
-                Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-              <!-- <p class="para"> Written by <a href="#" class="admin-inf">John Leo</a> on 28.Oct.2019</p> -->
-
-              <p class="para mt-3">Fermentum viverra eros. Praesent neque purus, rhoncus nec nibh non, mollis sodales
-                odio.
-                Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue. Aenean facilisis erat posuere erat
-                ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue. Fermentum viverra eros. Praesent neque
-                purus, rhoncus nec nibh non, mollis sodales odio.
-                Nullam facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue.</p>
-              <p class="para mt-3">Fermentum viverra eros. Praesent neque purus, rhoncus nec nibh non, mollis sodales
-                odio.
-                Nullam
-                facilisis diam non magna porta luctus. Aenean facilisis erat posuere erat ornare ultrices.
-                Aliquam ac arcu interdum, dapibus nibh convallis, semper augue. </p>
-            </div>
-          </div>
+    <div class="single-left1 box13">
+      <a href="blog-single.php"><img src="assets/images/<?php echo $blogPost['post_img']; ?>" alt=" " class="img-responsive" /></a>
+      <div class="blog-post editContent">
+        <ul>
+          <li class="propClone mr-3">
+            <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a></p>
+          </li>
+          <li class="propClone mr-3">
+            <p class="blog-para editContent price"><span class="fa fa-calendar"></span><?php echo $date; ?></p>
+          </li>
+          <li class="propClone">
+            <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (07)</p>
+          </li>
+        </ul>
+      </div>
+      <h3 class="card-title">
+        <?php echo $blogPost['title']; ?>
+      </h3>
+      <p class="para">
+        <?php echo $content; ?>
+      </p>
+      <!-- <p class="para"> Written by <a href="#" class="admin-inf">John Leo</a> on 28.Oct.2019</p> -->
+    </div>
+  </div>
+<?php
+} else {
+  echo '<div class="col-md-12 text-center">
+          <p>No blog post found.</p>
+        </div>';
+}
+?>
           <div class="blog-right">
             <!-- latest posts -->
             <div class="latest-posts blog-right-single">
-              <div class="comments-grid-right ">
-                <h5 class="editContent">Recent posts</h5>
-              </div>
-              <div class="blog-right-side-post editContent editContent">
-                <div class=" single-blog-image">
-                  <a href="blog-single.php">
-                    <img src="assets/images/f1.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="single-blog-left">
-                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
-                      tempor sed do eiusmod tempor</a>
-                  </h6>
+  <div class="comments-grid-right">
+    <h5 class="editContent">Recent posts</h5>
+  </div>
 
-                  <span class="editContent">june 20</span>
-                </div>
-              </div>
-              <div class="blog-right-side-post editContent">
-                <div class="single-blog-image">
-                  <a href="blog-single.php">
-                    <img src="assets/images/f2.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="single-blog-left">
-                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
-                      tempor sed do eiusmod tempor</a>
-                  </h6>
+  <?php
 
-                  <span class="editContent">april 16</span>
-                </div>
-              </div>
-              <div class="blog-right-side-post editContent">
-                <div class="single-blog-image">
-                  <a href="blog-single.php">
-                    <img src="assets/images/f3.jpg" class="img-responsive" alt=""></a>
-                </div>
-                <div class="single-blog-left">
-                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
-                      tempor sed do eiusmod tempor</a>
-                  </h6>
-                  <span class="editContent">May 28</span>
-                </div>
-              </div>
-            </div>
+  // Fetch recent posts from the database
+  $stmtFetch = $pdo->prepare("SELECT * FROM blog_posts ORDER BY created_at DESC");
+  $stmtFetch->execute();
+
+  while ($row = $stmtFetch->fetch(PDO::FETCH_ASSOC)) {
+    // Extract only the date from the created_at column
+    $date = date('F d', strtotime($row['created_at']));
+  ?>
+    <div class="blog-right-side-post editContent">
+      <div class="single-blog-image">
+        <a href="blog-single.php">
+          <img src="assets/images/<?php echo $row['post_img']; ?>" class="img-responsive" alt="">
+        </a>
+      </div>
+      <div class="single-blog-left">
+        <h6>
+          <a href="blog-single.php" class="editContent"><?php echo $row['title']; ?></a>
+        </h6>
+        <span class="editContent"><?php echo $date; ?></span>
+      </div>
+    </div>
+  <?php
+  }
+  ?>
+
+</div>
+
             <!-- latest post//s -->
             <!-- gallery -->
             <div class="right-sidegride blog-right-single editContent">
@@ -214,13 +214,13 @@
                 <h5 class="editContent">Instagram Feed</h5>
               </div>
               <div class="gallery-single-wthree">
-                <div class="gallery-tab editContent">
-                  <a href="blog-single.php">
-                    <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
-                  </a>
-                </div>
-                <div class="gallery-tab editContent">
-                  <a href="blog-single.php">
+                  <div class="gallery-tab editContent">
+                    <a href="blog-single.php">
+                      <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
+                    </a>
+                  </div>
+                  <div class="gallery-tab editContent">
+                    <a href="blog-single.php">
                     <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
