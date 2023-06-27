@@ -196,20 +196,20 @@ $totalPages = ceil($totalPosts / $postsPerPage);
       </div>
     </div>
   </section>
-  <section class="w3l-bootstrap-blog-list">
+  <section class="w3l-bootstrap-blog-list mb-5">
     <div class="infinite-scroll">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <?php if ($currentPage > 1) { ?>
-            <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage - 1); ?>">Previous</a></li>
+            <li class="page-item"><a class="page-link m-1" href="?page=<?php echo ($currentPage - 1); ?>">Previous</a>
+            </li>
           <?php } ?>
           <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
             <li class="page-item <?php if ($i == $currentPage)
-              echo "active"; ?>"><a class="page-link"
-                href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+              echo "active"; ?>"><a class="page-link m-1" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
           <?php } ?>
           <?php if ($currentPage < $totalPages) { ?>
-            <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage + 1); ?>">Next</a></li>
+            <li class="page-item"><a class="page-link m-1" href="?page=<?php echo ($currentPage + 1); ?>">Next</a></li>
           <?php } ?>
         </ul>
       </nav>
@@ -220,60 +220,62 @@ $totalPages = ceil($totalPosts / $postsPerPage);
   <!-- /team-grids -->
   </section>
   <?php
-require_once('connect.php');
+  require_once('connect.php');
 
-if (isset($_POST['upload'])) {
+  if (isset($_POST['upload'])) {
     $email = $_POST["email"];
 
     if (!empty($email)) {
-        try {
-            // Create a new PDO instance
-            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      try {
+        // Create a new PDO instance
+        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Check if email exists in the database
-            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
-            $checkStmt->bindParam(":email", $email);
-            $checkStmt->execute();
-            $count = $checkStmt->fetchColumn();
+        // Check if email exists in the database
+        $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
+        $checkStmt->bindParam(":email", $email);
+        $checkStmt->execute();
+        $count = $checkStmt->fetchColumn();
 
-            if ($count > 0) {
-                echo '<script>alert("Email already exists.");</script>';
-            } else {
-                // Prepare the SQL statement
-                $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
-                $insertStmt->bindParam(":email", $email);
+        if ($count > 0) {
+          echo '<script>alert("Email already exists.");</script>';
+        } else {
+          // Prepare the SQL statement
+          $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
+          $insertStmt->bindParam(":email", $email);
 
-                // Execute the statement
-                $insertStmt->execute();
+          // Execute the statement
+          $insertStmt->execute();
 
-                echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
-            }
-        } catch (PDOException $e) {
-            echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
+          echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
         }
+      } catch (PDOException $e) {
+        echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
+      }
     } else {
-        echo '<script>alert("Email field cannot be empty.");</script>';
+      echo '<script>alert("Email field cannot be empty.");</script>';
     }
-} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<script>alert("Error processing newsletter sign-up.");</script>';
-}
-?>
+  }
+  ?>
 
-<section class="w3l-about">
-  <div class="skills-bars editContent counter-width text-center">
-    <div class="container">
-      <div class="cover-back img-thumbnail p-3">
-        <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
-        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special offers.</p>
-        <form action="blog.php" method="post">
-          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email" placeholder="name@example.com" required>
-          <button type="submit" name="upload" class="btn btn-success m-3">Subscribe!</button>
-        </form>
+  <section class="w3l-about">
+    <div class="skills-bars editContent counter-width text-center">
+      <div class="container">
+        <div class="cover-back img-thumbnail p-3">
+          <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
+          <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special
+            offers.</p>
+          <form action="blog.php" method="post">
+            <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email"
+              placeholder="name@example.com" required>
+            <button type="submit" name="upload" class="btn btn-success m-3">Subscribe!</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
   <section class="w3l-footer-29-main">

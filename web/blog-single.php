@@ -299,98 +299,96 @@ if ($blogPost) {
       </div>
     </div>
   </section>
-
   <section class="w3l-comments">
     <div class="comments-main editContent">
       <div class="container">
         <div class="sec-cont-comment">
           <h3 class="aside-title editContent">Recent Comments (3)</h3>
           <div class="comments-grids">
-            <div class="media-comments editContent">
-              <div class="img-comment editContent">
-                <img class="img-responsive" src="assets/images/c3.jpg" alt="image">
-                <div class="grid-comment">
-                  <h4><a href="#name" class="editContent">Henry Nicholas</a></h4>
-                  <ul class="">
-                    <li class="font-weight-bold editContent">15 Oct 2019</li>
-                  </ul>
-                  <p class="para editContent mt-2">Nullam facilisis diam non magna porta luctus. Aenean faci lisis
-                    erat posuere erat ornare ultr ices.
-                    Aliquam ac arcu interdum.</p>
-                  <h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>
-                </div>
-              </div>
-            </div>
+            <?php
+            // Fetch comments by ID from the 'comments' table
+            require_once('connect.php'); // Include your database connection code
+            
+            $sql = "SELECT * FROM comments";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            <div class="media-comments editContent second-part mt-4">
-              <div class="img-comment editContent">
-                <img class="img-responsive" src="assets/images/c1.jpg" alt="image">
-                <div class="grid-comment">
-                  <h4><a href="#name" class="editContent">Shane Watson</a></h4>
-                  <ul>
-                    <li class="font-weight-bold editContent">20 Oct 2019</li>
-                  </ul>
+            foreach ($comments as $comment) {
+              $date = date('F d', strtotime($comment['created_at'])); // Fix: Use $comment instead of $row
+              echo '<div class="media-comments editContent">';
+              echo '<div class="img-comment editContent">';
+              echo '<img class="img-responsive" src="assets/images/' . $comment['user_img'] . '" alt="image">';
+              echo '<div class="grid-comment">';
+              echo '<h4><a href="#name" class="editContent">' . $comment['user_name'] . '</a></h4>';
+              echo '<ul class="">';
+              echo '<li class="font-weight-bold editContent">' . $date . '</li>';
+              echo '</ul>';
+              echo '<p class="para editContent mt-2">' . $comment['message'] . '</p>';
+              echo '<h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+            }
+            ?>
 
-                  <p class="para editContent mt-2">Nullam facilisis diam non magna porta luctus. Aenean faci lisis
-                    erat posuere erat ornare ultrices.
-                    Aliquam ac arcu interdum.</p>
-                  <h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>
-                </div>
-              </div>
-
-
-
-              <div class=" editContent comment-text">
-                <div class="img-comment editContent">
-                  <img class="img-responsive" src="assets/images/c2.jpg" alt="image">
-                  <div class="grid-comment">
-                    <h4><a href="#name" class="editContent">Max John</a></h4>
-                    <ul>
-                      <li class="font-weight-bold editContent">20 Oct 2019</li>
-                    </ul>
-                    <p class="para editContent mt-2">Nullam facilisis diam non magna porta luctus. Aenean faci lisis
-                      erat posuere erat ornare ultrices.
-                      Aliquam ac arcu interdum semper augue.</p>
-                    <h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="w3l-comments-form-11">
-    <div class="coments-forms-sub editContent">
-      <div class="container">
-        <div class="testi-top">
-          <h3 class="title-main2 editContent">Leave A Message</h3>
-          <div class="form-commets">
-            <form action="#" method="post">
-              <div class="media-class mb-2 pb-1">
-                <div class="editContent">
-                  <input type="text" name="Name" required="Name" placeholder="Your Name">
-                </div>
-                <div class="editContent">
-                  <input type="email" name="Email" required="Email" placeholder="Your Email">
-                </div>
+  <?php
+  // Include your database connection code (connect.php or similar)
+  require_once('connect.php');
 
-              </div>
-              <div class="editContent">
-                <textarea name="Message" required="" placeholder="Write your comments here"></textarea>
-              </div>
+  // Check if the form is submitted
+  if (isset($_POST['post_comment'])) {
+    // Retrieve the form data
+    $user_name = $_POST['user_name'];
+    $user_img = $_FILES['user_img']['name'];
+    $user_img_tmp = $_FILES['user_img']['tmp_name'];
+    $email = $_POST['email'];
+    $message = $_POST['messages'];
 
-              <div class="text-right">
-                <button class="btn button-eff action-button" type="submit">Post comment</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    // Check if a file was uploaded
+    if (!empty($user_img_tmp)) {
+      // Move the uploaded file to a desired location
+      $upload_dir = 'assets/images/';
+      $target_file = $upload_dir . basename($user_img);
 
-    </div>
-  </section>
+      if (move_uploaded_file($user_img_tmp, $target_file)) {
+        try {
+          // Create a new PDO instance
+          $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // Prepare the SQL statement
+          $sql = "INSERT INTO comments (user_name, user_img, email, messages) VALUES (:user_name, :user_img, :email, :messages)";
+          $stmt = $pdo->prepare($sql);
+
+          // Bind the parameters
+          $stmt->bindParam(":user_name", $user_name);
+          $stmt->bindParam(":user_img", $user_img);
+          $stmt->bindParam(":email", $email);
+          $stmt->bindParam(":messages", $messages);
+
+          // Execute the statement
+          $stmt->execute();
+
+          echo '<script>alert("Comment posted successfully.");</script>';
+        } catch (PDOException $e) {
+          echo '<script>alert("Error posting comment: ' . $e->getMessage() . '");</script>';
+        }
+      } else {
+        echo '<script>alert("Error moving the uploaded file.");</script>';
+      }
+    } else {
+      echo '<script>alert("Please upload an image.");</script>';
+    }
+  }
+  ?>
+
+
   <section class="w3l-footer-29-main">
     <div class="footer-29 py-5">
       <div class="container">
