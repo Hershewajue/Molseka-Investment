@@ -1,5 +1,5 @@
 <?php
-// Assuming you have already established a database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -7,10 +7,10 @@ $dbname = "molseka_investments";
 
 // Create a new PDO instance
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+  $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  die("Connection failed: " . $e->getMessage());
 }
 
 // Fetch blog posts from the database
@@ -128,7 +128,7 @@ echo json_encode($blogPosts);
     </div>
   </section>
   <!-- breadcrumbs //-->
-  <!-- blog block -->
+  <!-- blog block 
   <section class="w3l-services-6">
     <div class="services-layout editContent">
       <div class="container">
@@ -317,9 +317,9 @@ echo json_encode($blogPosts);
     </div>
     </div>
   </section>
-  //blog block
+  //blog block -->
 
-  <!-- blog block 
+  <!-- blog block -->
   <section class="w3l-services-6">
     <div class="services-layout editContent">
       <div class="container">
@@ -327,7 +327,8 @@ echo json_encode($blogPosts);
           <h3 class="header-name editContent">
             Our Awesome Blog Page
           </h3>
-          <p class="tiltle-para editContent editContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+          <p class="tiltle-para editContent editContent">Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Hic
             fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
         </div>
         <div id="blogContainer" class="row"></div>
@@ -354,37 +355,38 @@ echo json_encode($blogPosts);
     // Function to fetch and append blog posts
     function fetchBlogPosts() {
       // Send a request to your backend API with the current page and postsPerPage values
-      fetch(`http://localhost:3000/api/blog?page=${currentPage}&limit=${postsPerPage}`)
+      fetch(`/api/blog?page=${currentPage}&limit=${postsPerPage}`)
         .then(response => response.json())
         .then(data => {
           const blogContainer = document.getElementById('blogContainer');
+          blogContainer.innerHTML = ''; // Clear the container before appending new posts
 
           // Loop through the retrieved blog posts and append them to the container
           data.forEach(post => {
             const postElement = document.createElement('div');
             postElement.classList.add('col-lg-6', 'blog-gap-top', 'propClone');
             postElement.innerHTML = `
-            <div class="image-up">
-              <a href="blog-single.php">
-                <img src="${post.image}" alt="" class="img-responsive"></a>
-              <div class="blog-post editContent">
-                <ul>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                    </p>
-                  </li>
-                  <li class="propClone mr-3">
-                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> ${post.date}</p>
-                  </li>
-                  <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( ${post.commentsCount} )</p>
-                  </li>
-                </ul>
-              </div>
-              <h3> <a href="blog-single.php" class="blog-link editContent">${post.title}</a></h3>
-              <p class="para mt-3">${post.content}</p>
-            </div>
-          `;
+                        <div class="image-up">
+                            <a href="blog-single.php">
+                                <img src="${post.image}" alt="" class="img-responsive">
+                            </a>
+                            <div class="blog-post editContent">
+                                <ul>
+                                    <li class="propClone mr-3">
+                                        <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a></p>
+                                    </li>
+                                    <li class="propClone mr-3">
+                                        <p class="blog-para editContent price"><span class="fa fa-calendar"></span> ${post.date}</p>
+                                    </li>
+                                    <li class="propClone">
+                                        <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (${post.commentsCount})</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3><a href="blog-single.php" class="blog-link editContent">${post.title}</a></h3>
+                            <p class="para mt-3">${post.content}</p>
+                        </div>
+                    `;
             blogContainer.appendChild(postElement);
           });
 
@@ -419,7 +421,7 @@ echo json_encode($blogPosts);
     // Fetch initial blog posts on page load
     fetchBlogPosts();
   </script>
-   //blog block -->
+  <!-- //blog block -->
 
   <!-- /team-grids -->
   </section>

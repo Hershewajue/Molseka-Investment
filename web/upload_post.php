@@ -2,7 +2,7 @@
 require_once('connect.php');
 
 // Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST['upload'])) {
     // Retrieve the form data
     $title = $_POST["title"];
     $content = $_POST["content"];
@@ -11,33 +11,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $post_img = $_FILES['post_img']['name'];
     $post_img_tmp = $_FILES['post_img']['tmp_name'];
 
-    // Move the uploaded file to a desired location
-    $upload_dir = 'uploads/';
-    move_uploaded_file($post_img_tmp, $upload_dir . $post_img);
-    
-    try {
-        // Create a new PDO instance
-        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Check if a file was uploaded
+    if (!empty($post_img_tmp)) {
+        // Move the uploaded file to a desired location
+        $upload_dir = 'uploads/';
+        $target_file = $upload_dir . basename($post_img);
 
-        // Prepare the SQL statement
-        $sql = "INSERT INTO blog_posts (title, post_img, content) VALUES (:title, :post_img, :content)";
-        $stmt = $pdo->prepare($sql);
+        if (move_uploaded_file($post_img_tmp, $target_file)) {
+            try {
+                // Create a new PDO instance
+                $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Bind the parameters
-        $stmt->bindParam(":title", $title);
-        $stmt->bindParam(":post_img", $post_img);
-        $stmt->bindParam(":content", $content);
+                // Prepare the SQL statement
+                $sql = "INSERT INTO blog_posts (title, post_img, content) VALUES (:title, :post_img, :content)";
+                $stmt = $pdo->prepare($sql);
 
-        // Execute the statement
-        $stmt->execute();
+                // Bind the parameters
+                $stmt->bindParam(":title", $title);
+                $stmt->bindParam(":post_img", $post_img);
+                $stmt->bindParam(":content", $content);
 
-        echo '<script>alert("Blog post uploaded successfully.");</script>';
-    } catch (PDOException $e) {
-        echo '<script>alert("Error uploading blog post: ' . $e->getMessage() . '");</script>';
+                // Execute the statement
+                $stmt->execute();
+
+                echo '<script>alert("Blog post uploaded successfully.");</script>';
+            } catch (PDOException $e) {
+                echo '<script>alert("Error uploading blog post: ' . $e->getMessage() . '");</script>';
+            }
+        } else {
+            echo '<script>alert("Error moving the uploaded file.");</script>';
+        }
+    } else {
+        echo '<script>alert("Please upload an image for the post.");</script>';
     }
 }
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -126,40 +136,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         });
     </script>
     <!-- disable body scroll which navbar is in active -->
-
     <section>
-    <main><!-- HTML form to input blog post data -->
-        <div class="container mt-5 mb-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h1 class="card-title text-center mb-4">Post Upload Form</h1>
-                            <form method="post" action="upload_post.php" class="needs-validation" novalidate>
-                                <div class="mb-3">
-                                    <label for="title" class="form-label">Title</label>
-                                    <input class="form-control" type="text" name="title" id="title" required>
-                                    <div class="invalid-feedback">Please enter post title.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="post_img" class="form-label">Upload post's image</label>
-                                    <input type="file" class="form-control" id="post_img" name="post_img" required>
-                                    <div class="invalid-feedback">Please upload an image for the post.</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="content" class="form-label">Content</label>
-                                    <textarea type="content" class="form-control" id="content" name="content"
-                                        rows="5" required></textarea>
-                                    <div class="invalid-feedback">Please enter the content of the post.</div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-register form-control">Upload post!</button>
-                            </form>
+        <main>
+            <!-- HTML form to input blog post data -->
+            <div class="container mt-5 mb-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h1 class="card-title text-center mb-4">Post Upload Form</h1>
+                                <form method="post" action="upload_post.php" class="needs-validation" enctype="multipart/form-data" needs-validation>
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">Title</label>
+                                        <input class="form-control" type="text" name="title" id="title" required>
+                                        <div class="invalid-feedback">Please enter post title.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="post_img" class="form-label">Upload post's image</label>
+                                        <input type="file" class="form-control" id="post_img" name="post_img" required>
+                                        <div class="invalid-feedback">Please upload an image for the post.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="content" class="form-label">Content</label>
+                                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                                        <div class="invalid-feedback">Please enter the content of the post.</div>
+                                    </div>
+                                    <button type="submit" name="upload" class="btn btn-primary btn-register form-control">Upload post!</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
     </section>
     <section class="w3l-footer-29-main">
         <div class="footer-29 py-5">
