@@ -1,28 +1,42 @@
 <?php
 require_once('connect.php');
 
-// Check if the form is submitted
-if (isset($_POST['upload'])) {
-    // Retrieve the form data
-    $title = $_POST["title"];
-    $content = $_POST["content"];
+try {
+    // Create a new PDO instance
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Retrieve the uploaded file
-    $post_img = $_FILES['post_img']['name'];
-    $post_img_tmp = $_FILES['post_img']['tmp_name'];
+    // Check if the table exists, and create it if it doesn't
+    $tableName = 'blog_posts';
+    $checkTableExists = $pdo->query("SHOW TABLES LIKE '$tableName'");
+    if ($checkTableExists->rowCount() == 0) {
+        $createTableSql = "CREATE TABLE $tableName (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            post_img VARCHAR(255) NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )";
+        $pdo->exec($createTableSql);
+    }
 
-    // Check if a file was uploaded
-    if (!empty($post_img_tmp)) {
-        // Move the uploaded file to a desired location
-        $upload_dir = 'uploads/';
-        $target_file = $upload_dir . basename($post_img);
+    // Check if the form is submitted
+    if (isset($_POST['upload'])) {
+        // Retrieve the form data
+        $title = $_POST["title"];
+        $content = $_POST["content"];
 
-        if (move_uploaded_file($post_img_tmp, $target_file)) {
-            try {
-                // Create a new PDO instance
-                $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Retrieve the uploaded file
+        $post_img = $_FILES['post_img']['name'];
+        $post_img_tmp = $_FILES['post_img']['tmp_name'];
 
+        // Check if a file was uploaded
+        if (!empty($post_img_tmp)) {
+            // Move the uploaded file to a desired location
+            $upload_dir = 'uploads/';
+            $target_file = $upload_dir . basename($post_img);
+
+            if (move_uploaded_file($post_img_tmp, $target_file)) {
                 // Prepare the SQL statement
                 $sql = "INSERT INTO blog_posts (title, post_img, content) VALUES (:title, :post_img, :content)";
                 $stmt = $pdo->prepare($sql);
@@ -36,17 +50,18 @@ if (isset($_POST['upload'])) {
                 $stmt->execute();
 
                 echo '<script>alert("Blog post uploaded successfully.");</script>';
-            } catch (PDOException $e) {
-                echo '<script>alert("Error uploading blog post: ' . $e->getMessage() . '");</script>';
+            } else {
+                echo '<script>alert("Error moving the uploaded file.");</script>';
             }
         } else {
-            echo '<script>alert("Error moving the uploaded file.");</script>';
+            echo '<script>alert("Please upload an image for the post.");</script>';
         }
-    } else {
-        echo '<script>alert("Please upload an image for the post.");</script>';
     }
+} catch (PDOException $e) {
+    echo '<script>alert("Error connecting to the database: ' . $e->getMessage() . '");</script>';
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">

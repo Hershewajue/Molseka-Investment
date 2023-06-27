@@ -147,20 +147,72 @@
           </div>
           <div class="row">
             <div class="map-content-9 col-lg-6">
-              <form action="https://sendmail.w3layouts.com/submitForm" method="post">
+              <?php
+              require_once('connect.php');
+
+              try {
+                // Create a new PDO instance
+                $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Check if the table exists, and create it if it doesn't
+                $tableName = 'contact_us';
+                $checkTableExists = $pdo->query("SHOW TABLES LIKE '$tableName'");
+                if ($checkTableExists->rowCount() == 0) {
+                  $createTableSql = "CREATE TABLE $tableName (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            names VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            msubject VARCHAR(255) NOT NULL,
+            messages TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )";
+                  $pdo->exec($createTableSql);
+                }
+
+                if (isset($_POST['contact_us'])) {
+                  $name = $_POST["names"];
+                  $email = $_POST["email"];
+                  $subject = $_POST["msubject"];
+                  $message = $_POST["messages"];
+
+                  // Prepare the SQL statement
+                  $sql = "INSERT INTO contact_us (names, email, msubject, messages) VALUES (:names, :email, :msubject, :messages)";
+                  $stmt = $pdo->prepare($sql);
+
+                  // Bind the parameters
+                  $stmt->bindParam(":names", $name);
+                  $stmt->bindParam(":email", $email);
+                  $stmt->bindParam(":msubject", $subject);
+                  $stmt->bindParam(":messages", $message);
+
+                  // Execute the statement
+                  $stmt->execute();
+
+                  echo '<script>alert("Your message has been submitted successfully.");</script>';
+                } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                  echo '<script>alert("Error processing contact form data.");</script>';
+                }
+              } catch (PDOException $e) {
+                echo '<script>alert("Error connecting to the database: ' . $e->getMessage() . '");</script>';
+              }
+              ?>
+
+              <form action="contact.php" method="post">
                 <div class="twice-two">
-                  <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Name" required="">
-                  <input type="email" class="form-control" name="w3lSender" id="w3lSender" placeholder="Email"
-                    required="">
+                  <input type="text" class="form-control" name="names" id="names" placeholder="Name" required="">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="">
                 </div>
                 <div class="twice">
-                  <input type="text" class="form-control" name="w3lSubject" id="w3lSubject" placeholder="Subject"
+                  <input type="text" class="form-control" name="msubject" id="msubject" placeholder="Subject"
                     required="">
                 </div>
-                <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Message"
+                <textarea name="messages" class="form-control" id="messages" placeholder="Message"
                   required=""></textarea>
-                <button type="submit" class="btn btn-contact">Send Message</button>
+                <button type="submit" name="contact_us" id="contact_us" class="btn btn-contact">Send Message</button>
               </form>
+
+
             </div>
             <div class="map-iframe col-lg-6">
               <iframe
