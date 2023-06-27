@@ -47,7 +47,6 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="services.php">Services</a>
                   <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
-                  <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
                   <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                 </div>
               </li>

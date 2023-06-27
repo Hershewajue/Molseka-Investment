@@ -79,7 +79,6 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="services.php">Services</a>
                   <a class="dropdown-item active" href="blog.php" class="drop-text">Blog</a>
-                  <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
                   <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                 </div>
               </li>
@@ -167,24 +166,31 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                         </p>
                       </li>
                       <li class="propClone mr-3">
-                        <p class="blog-para price"><span class="fa fa-calendar"></span><?php echo $date; ?></p>
+                        <p class="blog-para price"><span class="fa fa-calendar"></span>
+                          <?php echo $date; ?>
+                        </p>
                       </li>
                       <li class="propClone">
                         <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (07)</p>
                       </li>
                     </ul>
                   </div>
-                  <p class="blog-para price"><span class="fa fa-calendar"></span><?php echo $date; ?></p>
-                  <h3><a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog"><?php echo $row['title']; ?></a></h3>
-                  <p class="para"><?php echo $content; ?></p>
+                  <p class="blog-para price"><span class="fa fa-calendar"></span>
+                    <?php echo $date; ?>
+                  </p>
+                  <h3><a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog"><?php echo $row['title']; ?></a>
+                  </h3>
+                  <p class="para">
+                    <?php echo $content; ?>
+                  </p>
                   <a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog-btn btn">Read More</a>
                 </div>
               </div>
             <?php }
           } else { ?>
-            <div class="col-md-12 text-center">
-              <p>No blog posts found.</p>
-            </div>
+          <div class="col-md-12 text-center">
+            <p>No blog posts found.</p>
+          </div>
           <?php } ?>
         </div>
       </div>
@@ -198,7 +204,9 @@ $totalPages = ceil($totalPosts / $postsPerPage);
             <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage - 1); ?>">Previous</a></li>
           <?php } ?>
           <?php for ($i = 1; $i <= $totalPages; $i++) { ?>
-            <li class="page-item <?php if ($i == $currentPage) echo "active"; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <li class="page-item <?php if ($i == $currentPage)
+              echo "active"; ?>"><a class="page-link"
+                href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
           <?php } ?>
           <?php if ($currentPage < $totalPages) { ?>
             <li class="page-item"><a class="page-link" href="?page=<?php echo ($currentPage + 1); ?>">Next</a></li>
@@ -211,21 +219,63 @@ $totalPages = ceil($totalPosts / $postsPerPage);
 
   <!-- /team-grids -->
   </section>
-  <section class="w3l-about">
-    <div class="skills-bars editContent counter-width text-center">
-      <div class="container">
-        <div class="cover-back img-thumbnail p-3">
-          <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
-          <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special
-            offers.</p>
-          <form action="/subscribe" method="post">
-            <input type="email" class="form-control mt-3" id="exampleFormControlInput1" placeholder="name@example.com">
-            <button type="submit" class="btn btn-success m-3">Subscribe!</button>
-          </form>
-        </div>
+  <?php
+require_once('connect.php');
+
+if (isset($_POST['upload'])) {
+    $email = $_POST["email"];
+
+    if (!empty($email)) {
+        try {
+            // Create a new PDO instance
+            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Check if email exists in the database
+            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
+            $checkStmt->bindParam(":email", $email);
+            $checkStmt->execute();
+            $count = $checkStmt->fetchColumn();
+
+            if ($count > 0) {
+                echo '<script>alert("Email already exists.");</script>';
+            } else {
+                // Prepare the SQL statement
+                $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
+                $insertStmt->bindParam(":email", $email);
+
+                // Execute the statement
+                $insertStmt->execute();
+
+                echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
+            }
+        } catch (PDOException $e) {
+            echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
+        }
+    } else {
+        echo '<script>alert("Email field cannot be empty.");</script>';
+    }
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo '<script>alert("Error processing newsletter sign-up.");</script>';
+}
+?>
+
+<section class="w3l-about">
+  <div class="skills-bars editContent counter-width text-center">
+    <div class="container">
+      <div class="cover-back img-thumbnail p-3">
+        <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
+        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special offers.</p>
+        <form action="blog.php" method="post">
+          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email" placeholder="name@example.com" required>
+          <button type="submit" name="upload" class="btn btn-success m-3">Subscribe!</button>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
   <section class="w3l-footer-29-main">
     <div class="footer-29 py-5">
       <div class="container">

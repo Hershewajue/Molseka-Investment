@@ -45,7 +45,6 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="services.php">Services</a>
                 <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
-                <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
                 <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
               </div>
             </li>
@@ -374,21 +373,62 @@
   </div>
   </div>
 </section>
+<?php
+require_once('connect.php');
+
+if (isset($_POST['upload'])) {
+    $email = $_POST["email"];
+
+    if (!empty($email)) {
+        try {
+            // Create a new PDO instance
+            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Check if email exists in the database
+            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
+            $checkStmt->bindParam(":email", $email);
+            $checkStmt->execute();
+            $count = $checkStmt->fetchColumn();
+
+            if ($count > 0) {
+                echo '<script>alert("Email already exists.");</script>';
+            } else {
+                // Prepare the SQL statement
+                $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
+                $insertStmt->bindParam(":email", $email);
+
+                // Execute the statement
+                $insertStmt->execute();
+
+                echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
+            }
+        } catch (PDOException $e) {
+            echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
+        }
+    } else {
+        echo '<script>alert("Email field cannot be empty.");</script>';
+    }
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo '<script>alert("Error processing newsletter sign-up.");</script>';
+}
+?>
+
 <section class="w3l-about">
   <div class="skills-bars editContent counter-width text-center">
     <div class="container">
       <div class="cover-back img-thumbnail p-3">
         <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
-        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special
-          offers.</p>
-        <form action="/subscribe" method="post">
-          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" placeholder="name@example.com">
-          <button type="submit" class="btn btn-success m-3">Subscribe!</button>
+        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special offers.</p>
+        <form action="index.php" method="post">
+          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email" placeholder="name@example.com" required>
+          <button type="submit" name="upload" class="btn btn-success m-3">Subscribe!</button>
         </form>
       </div>
     </div>
   </div>
 </section>
+
 <section class="w3l-footer-29-main">
   <div class="footer-29 py-5">
     <div class="container">

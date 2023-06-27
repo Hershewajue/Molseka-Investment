@@ -79,7 +79,6 @@ if ($blogPost) {
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="services.php">Services</a>
                     <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
-                    <a class="dropdown-item active" href="blog-single.php" class="drop-text">Blog Single</a>
                     <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                   </div>
                 </li>
@@ -141,7 +140,7 @@ if ($blogPost) {
           <!-- left side blog post content -->
           <div class="single-left">
     <div class="single-left1 box13">
-      <a href="blog-single.php"><img src="assets/images/<?php echo $blogPost['post_img']; ?>" alt=" " class="img-responsive" /></a>
+      <img src="assets/images/<?php echo $blogPost['post_img']; ?>" alt=" " class="img-responsive" />
       <div class="blog-post editContent">
         <ul>
           <li class="propClone mr-3">
@@ -179,24 +178,26 @@ if ($blogPost) {
   </div>
 
   <?php
+  require_once('connect.php');
 
-  // Fetch recent posts from the database
-  $stmtFetch = $pdo->prepare("SELECT * FROM blog_posts ORDER BY created_at DESC");
+  // Fetch the last 4 recent posts from the database
+  $stmtFetch = $pdo->prepare("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
   $stmtFetch->execute();
 
   while ($row = $stmtFetch->fetch(PDO::FETCH_ASSOC)) {
     // Extract only the date from the created_at column
     $date = date('F d', strtotime($row['created_at']));
+    $postId = $row['id'];
   ?>
     <div class="blog-right-side-post editContent">
       <div class="single-blog-image">
-        <a href="blog-single.php">
+        <a href="blog-single.php?id=<?php echo $postId; ?>">
           <img src="assets/images/<?php echo $row['post_img']; ?>" class="img-responsive" alt="">
         </a>
       </div>
       <div class="single-blog-left">
         <h6>
-          <a href="blog-single.php" class="editContent"><?php echo $row['title']; ?></a>
+          <a href="blog-single.php?id=<?php echo $postId; ?>" class="editContent"><?php echo $row['title']; ?></a>
         </h6>
         <span class="editContent"><?php echo $date; ?></span>
       </div>
