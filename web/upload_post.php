@@ -5,9 +5,16 @@ require_once('connect.php');
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve the form data
     $title = $_POST["title"];
-    $post_img = $_POST["post_img"];
     $content = $_POST["content"];
 
+    // Retrieve the uploaded file
+    $post_img = $_FILES['post_img']['name'];
+    $post_img_tmp = $_FILES['post_img']['tmp_name'];
+
+    // Move the uploaded file to a desired location
+    $upload_dir = 'uploads/';
+    move_uploaded_file($post_img_tmp, $upload_dir . $post_img);
+    
     try {
         // Create a new PDO instance
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -54,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <header class="absolute-top">
             <div class="container-fluid pr-lg-0">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="nav-link" href="index.html"><img class="logo p-1 float-left"
+                    <a class="nav-link" href="index.php"><img class="logo p-1 float-left"
                             src="assets/images/Molseka6.jpg" alt="Molseka logo"><span>
                             <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
                         </span></a>
@@ -68,10 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active @@about__active">
-                                <a class="nav-link" href="about.html">About</a>
+                                <a class="nav-link" href="about.php">About</a>
                             </li>
                             <li class="nav-item dropdown @@pages__active">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -79,14 +86,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="services.html">Services</a>
-                                    <a class="dropdown-item " href="blog.html" class="drop-text">Blog</a>
-                                    <a class="dropdown-item" href="blog-single.html" class="drop-text">Blog Single</a>
-                                    <a class="dropdown-item" href="landing-page.html" class="drop-text">landing page</a>
+                                    <a class="dropdown-item" href="services.php">Services</a>
+                                    <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
+                                    <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
+                                    <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                                 </div>
                             </li>
                             <li class="nav-item @@contact__active">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <a class="nav-link" href="contact.php">Contact</a>
                             </li>
                             <li class="nav-item ml-lg-3">
                                 <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span
@@ -160,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="row footer-top-29">
                     <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
                         <div class="left-side">
-                            <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img
+                            <h2 class="footer-title-29"><a href="index.php"><span class="mr-1"><img
                                             class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
                                             alt="Molseka logo"></span>MOLSEKA <span>
                                         <p class="para">Global Investment Company Ltd.</p>
@@ -175,30 +182,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
                         <ul>
                             <h6 class="footer-title-29">About</h6>
-                            <li><a href="services.html">How it Works</a></li>
-                            <li><a href="services.html">Guarantee</a></li>
-                            <li><a href="services.html">Security</a></li>
-                            <li><a href="services.html">Our story</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                            <li><a href="services.php">How it Works</a></li>
+                            <li><a href="services.php">Guarantee</a></li>
+                            <li><a href="services.php">Security</a></li>
+                            <li><a href="services.php">Our story</a></li>
+                            <li><a href="contact.php">Contact us</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
                         <ul>
                             <h6 class="footer-title-29">Solution</h6>
-                            <li><a href="services.html">Car Loan</a></li>
-                            <li><a href="services.html">Personal Loan</a></li>
-                            <li><a href="services.html">Education Loan</a></li>
-                            <li><a href="services.html">Business Loan</a></li>
-                            <li><a href="services.html">Home Loan</a></li>
+                            <li><a href="services.php">Car Loan</a></li>
+                            <li><a href="services.php">Personal Loan</a></li>
+                            <li><a href="services.php">Education Loan</a></li>
+                            <li><a href="services.php">Business Loan</a></li>
+                            <li><a href="services.php">Home Loan</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
                         <ul>
                             <h6 class="footer-title-29">Need Help?</h6>
-                            <li><a href="contact.html">Find a branch</a></li>
-                            <li><a href="about.html">FAQs</a></li>
-                            <li><a href="contact.html">APR</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                            <li><a href="contact.php">Find a branch</a></li>
+                            <li><a href="about.php">FAQs</a></li>
+                            <li><a href="contact.php">APR</a></li>
+                            <li><a href="contact.php">Contact us</a></li>
                         </ul>
                     </div>
                 </div>

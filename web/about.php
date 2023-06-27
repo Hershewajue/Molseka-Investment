@@ -21,7 +21,7 @@
     <header class="absolute-top">
       <div class="container-fluid pr-lg-0">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="nav-link" href="index.html"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
+          <a class="nav-link" href="index.php"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
               alt="Molseka logo"><span>
               <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
             </span></a>
@@ -34,10 +34,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active @@about__active">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="about.php">About</a>
               </li>
               <li class="nav-item dropdown @@pages__active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -45,14 +45,14 @@
                   pages
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="services.html">Services</a>
-                  <a class="dropdown-item " href="blog.html" class="drop-text">Blog</a>
-                  <a class="dropdown-item" href="blog-single.html" class="drop-text">Blog Single</a>
-                  <a class="dropdown-item" href="landing-page.html" class="drop-text">landing page</a>
+                  <a class="dropdown-item" href="services.php">Services</a>
+                  <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
+                  <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
+                  <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                 </div>
               </li>
               <li class="nav-item @@contact__active">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="contact.php">Contact</a>
               </li>
               <li class="nav-item ml-lg-3">
                 <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span
@@ -92,7 +92,7 @@
       <div class="container">
         <div class="breadcrumbs-sub">
           <ul class="breadcrumbs-custom-path">
-            <li class="right-side propClone"><a href="index.html" class="editContent">Home <span
+            <li class="right-side propClone"><a href="index.php" class="editContent">Home <span
                   class="fa fa-angle-right" aria-hidden="true"></span></a>
               <p>
             </li>
@@ -220,7 +220,7 @@
             <p class="para mb-3">With a philosophy centered on long-term value creation and risk management, we strive
               to deliver sustainable
               returns and establish lasting financial success for our clients.</p>
-            <a href="about.html" class="action-button btn mt-3">Read more</a>
+            <a href="about.php" class="action-button btn mt-3">Read more</a>
           </div>
           <div class="col-lg-6 ">
             <img src="assets/images/b4.jpg" alt="product" class="img-responsive about-me">
@@ -315,7 +315,7 @@
         <div class="row footer-top-29">
           <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
             <div class="left-side">
-              <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left"
+              <h2 class="footer-title-29"><a href="index.php"><span class="mr-1"><img class="logo p-1 float-left"
                       src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
                     <p class="para">Global Investment Company Ltd.</p>
                   </span></a></h2>
@@ -327,30 +327,30 @@
           <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">About</h6>
-              <li><a href="services.html">How it Works</a></li>
-              <li><a href="services.html">Guarantee</a></li>
-              <li><a href="services.html">Security</a></li>
-              <li><a href="services.html">Our story</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="services.php">How it Works</a></li>
+              <li><a href="services.php">Guarantee</a></li>
+              <li><a href="services.php">Security</a></li>
+              <li><a href="services.php">Our story</a></li>
+              <li><a href="contact.php">Contact us</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">Solution</h6>
-              <li><a href="services.html">Car Loan</a></li>
-              <li><a href="services.html">Personal Loan</a></li>
-              <li><a href="services.html">Education Loan</a></li>
-              <li><a href="services.html">Business Loan</a></li>
-              <li><a href="services.html">Home Loan</a></li>
+              <li><a href="services.php">Car Loan</a></li>
+              <li><a href="services.php">Personal Loan</a></li>
+              <li><a href="services.php">Education Loan</a></li>
+              <li><a href="services.php">Business Loan</a></li>
+              <li><a href="services.php">Home Loan</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">Need Help?</h6>
-              <li><a href="contact.html">Find a branch</a></li>
-              <li><a href="about.html">FAQs</a></li>
-              <li><a href="contact.html">APR</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="contact.php">Find a branch</a></li>
+              <li><a href="about.php">FAQs</a></li>
+              <li><a href="contact.php">APR</a></li>
+              <li><a href="contact.php">Contact us</a></li>
             </ul>
           </div>
         </div>

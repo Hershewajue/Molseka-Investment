@@ -33,7 +33,7 @@
       <header class="absolute-top">
         <div class="container-fluid pr-lg-0">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="nav-link" href="index.html"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
+            <a class="nav-link" href="index.php"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
                 alt="Molseka logo"><span>
                 <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
               </span></a>
@@ -46,10 +46,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item @@about__active">
-                  <a class="nav-link" href="about.html">About</a>
+                  <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item dropdown active @@pages__active">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -57,14 +57,14 @@
                     pages
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="services.html">Services</a>
-                    <a class="dropdown-item " href="blog.html" class="drop-text">Blog</a>
-                    <a class="dropdown-item active" href="blog-single.html" class="drop-text">Blog Single</a>
-                    <a class="dropdown-item" href="landing-page.html" class="drop-text">landing page</a>
+                    <a class="dropdown-item" href="services.php">Services</a>
+                    <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
+                    <a class="dropdown-item active" href="blog-single.php" class="drop-text">Blog Single</a>
+                    <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
                   </div>
                 </li>
                 <li class="nav-item @@contact__active">
-                  <a class="nav-link" href="contact.html">Contact</a>
+                  <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item ml-lg-3">
                   <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span
@@ -103,7 +103,7 @@
       <div class="about-inner blog-single editContent">
         <div class="breadcrumbs-sub">
           <ul class="breadcrumbs-custom-path">
-            <li class="right-side propClone"><a href="index.html" class="editContent">Home <span
+            <li class="right-side propClone"><a href="index.php" class="editContent">Home <span
                   class="fa fa-angle-right" aria-hidden="true"></span></a>
               <p>
             </li>
@@ -121,7 +121,7 @@
           <!-- left side blog post content -->
           <div class="single-left">
             <div class="single-left1 box13">
-              <a href="blog-single.html"><img src="assets/images/b1.jpg" alt=" " class="img-responsive" /></a>
+              <a href="blog-single.php"><img src="assets/images/b1.jpg" alt=" " class="img-responsive" /></a>
               <div class="blog-post editContent">
                 <ul>
                   <li class="propClone mr-3">
@@ -135,7 +135,7 @@
                   </li>
                 </ul>
               </div>
-              <h3 class="card-title"><a href="blog-single.html">FCA announces new proposals to protect millions using
+              <h3 class="card-title"><a href="blog-single.php">FCA announces new proposals to protect millions using
                   overdrafts and high-cost credit</a></h3>
 
               <p class="para">Fermentum viverra eros. Praesent neque purus, rhoncus nec nibh non, mollis sodales odio.
@@ -170,11 +170,11 @@
               </div>
               <div class="blog-right-side-post editContent editContent">
                 <div class=" single-blog-image">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f1.jpg" class="img-responsive" alt=""></a>
                 </div>
                 <div class="single-blog-left">
-                  <h6><a href="blog-single.html" class="editContent">Conse ctetur adipi
+                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
                       tempor sed do eiusmod tempor</a>
                   </h6>
 
@@ -183,11 +183,11 @@
               </div>
               <div class="blog-right-side-post editContent">
                 <div class="single-blog-image">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f2.jpg" class="img-responsive" alt=""></a>
                 </div>
                 <div class="single-blog-left">
-                  <h6><a href="blog-single.html" class="editContent">Conse ctetur adipi
+                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
                       tempor sed do eiusmod tempor</a>
                   </h6>
 
@@ -196,11 +196,11 @@
               </div>
               <div class="blog-right-side-post editContent">
                 <div class="single-blog-image">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f3.jpg" class="img-responsive" alt=""></a>
                 </div>
                 <div class="single-blog-left">
-                  <h6><a href="blog-single.html" class="editContent">Conse ctetur adipi
+                  <h6><a href="blog-single.php" class="editContent">Conse ctetur adipi
                       tempor sed do eiusmod tempor</a>
                   </h6>
                   <span class="editContent">May 28</span>
@@ -215,64 +215,64 @@
               </div>
               <div class="gallery-single-wthree">
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
 
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f4.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f4.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
 
                 <div class="gallery-tab editContent">
-                  <a href="blog-single.html">
+                  <a href="blog-single.php">
                     <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                   </a>
                 </div>
@@ -285,20 +285,20 @@
                 <h5 class="editContent">Categories</h5>
               </div>
               <ul>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Advice and Guides</a> <a
-                    href="blog-single.html" class="editContent sub-number">5</a></a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Mobile Bank</a> <a
-                    href="blog-single.html" class="editContent sub-number">6</a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Professional Services</a><a
-                    href="blog-single.html" class="editContent sub-number">3</a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Making Internet </a><a
-                    href="blog-single.html" class="editContent sub-number">1</a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">On time Service</a><a
-                    href="blog-single.html" class="editContent sub-number">4</a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Mobile Bank</a> <a
-                    href="blog-single.html" class="editContent sub-number">6</a></li>
-                <li class="propClone"><a href="blog-single.html" class="editContent">Best Support</a><a
-                    href="blog-single.html" class="editContent sub-number">2</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Advice and Guides</a> <a
+                    href="blog-single.php" class="editContent sub-number">5</a></a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Mobile Bank</a> <a
+                    href="blog-single.php" class="editContent sub-number">6</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Professional Services</a><a
+                    href="blog-single.php" class="editContent sub-number">3</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Making Internet </a><a
+                    href="blog-single.php" class="editContent sub-number">1</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">On time Service</a><a
+                    href="blog-single.php" class="editContent sub-number">4</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Mobile Bank</a> <a
+                    href="blog-single.php" class="editContent sub-number">6</a></li>
+                <li class="propClone"><a href="blog-single.php" class="editContent">Best Support</a><a
+                    href="blog-single.php" class="editContent sub-number">2</a></li>
               </ul>
             </div>
             <!--Blog Archives-->
@@ -404,7 +404,7 @@
           <div class="row footer-top-29">
             <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
               <div class="left-side">
-                <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left"
+                <h2 class="footer-title-29"><a href="index.php"><span class="mr-1"><img class="logo p-1 float-left"
                         src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
                       <p class="para">Global Investment Company Ltd.</p>
                     </span></a></h2>
@@ -416,30 +416,30 @@
             <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">About</h6>
-                <li><a href="services.html">How it Works</a></li>
-                <li><a href="services.html">Guarantee</a></li>
-                <li><a href="services.html">Security</a></li>
-                <li><a href="services.html">Our story</a></li>
-                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="services.php">How it Works</a></li>
+                <li><a href="services.php">Guarantee</a></li>
+                <li><a href="services.php">Security</a></li>
+                <li><a href="services.php">Our story</a></li>
+                <li><a href="contact.php">Contact us</a></li>
               </ul>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">Solution</h6>
-                <li><a href="services.html">Car Loan</a></li>
-                <li><a href="services.html">Personal Loan</a></li>
-                <li><a href="services.html">Education Loan</a></li>
-                <li><a href="services.html">Business Loan</a></li>
-                <li><a href="services.html">Home Loan</a></li>
+                <li><a href="services.php">Car Loan</a></li>
+                <li><a href="services.php">Personal Loan</a></li>
+                <li><a href="services.php">Education Loan</a></li>
+                <li><a href="services.php">Business Loan</a></li>
+                <li><a href="services.php">Home Loan</a></li>
               </ul>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
               <ul>
                 <h6 class="footer-title-29">Need Help?</h6>
-                <li><a href="contact.html">Find a branch</a></li>
-                <li><a href="about.html">FAQs</a></li>
-                <li><a href="contact.html">APR</a></li>
-                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="contact.php">Find a branch</a></li>
+                <li><a href="about.php">FAQs</a></li>
+                <li><a href="contact.php">APR</a></li>
+                <li><a href="contact.php">Contact us</a></li>
               </ul>
             </div>
           </div>

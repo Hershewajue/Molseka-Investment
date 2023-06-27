@@ -21,7 +21,7 @@
     <header class="absolute-top">
       <div class="container-fluid pr-lg-0">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="nav-link" href="index.html"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
+          <a class="nav-link" href="index.php"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
               alt="Molseka logo"><span>
               <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
             </span></a>
@@ -34,10 +34,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item @@about__active">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="about.php">About</a>
               </li>
               <li class="nav-item dropdown active @@pages__active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -45,14 +45,14 @@
                   pages
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="services.html">Services</a>
-                  <a class="dropdown-item " href="blog.html" class="drop-text">Blog</a>
-                  <a class="dropdown-item" href="blog-single.html" class="drop-text">Blog Single</a>
-                  <a class="dropdown-item active" href="landing-page.html" class="drop-text">landing page</a>
+                  <a class="dropdown-item" href="services.php">Services</a>
+                  <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
+                  <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
+                  <a class="dropdown-item active" href="landing-page.php" class="drop-text">landing page</a>
                 </div>
               </li>
               <li class="nav-item @@contact__active">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="contact.php">Contact</a>
               </li>
               <li class="nav-item ml-lg-3">
                 <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span
@@ -101,7 +101,7 @@
                       banking needs </h5>
                     <p>Conse ctetur Lorem ipsum dolor sit amet adipi sicing elit. Quae, velit recu sandae eum necessi
                       tatibus bland itiis adipisci Mollitia placeat modi explicabo voluptatum corporis.</p>
-                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php">Find out more</a>
                   </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@
                       banking needs </h5>
                     <p>Conse ctetur Lorem ipsum dolor sit amet adipi sicing elit. Quae, velit recu sandae eum necessi
                       tatibus bland itiis adipisci Mollitia placeat modi explicabo voluptatum corporis.</p>
-                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html"> Find out more</a>
+                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php"> Find out more</a>
                   </div>
                 </div>
               </div>
@@ -135,7 +135,7 @@
                       banking needs </h5>
                     <p>Conse ctetur Lorem ipsum dolor sit amet adipi sicing elit. Quae, velit recu sandae eum necessi
                       tatibus bland itiis adipisci Mollitia placeat modi explicabo voluptatum corporis.</p>
-                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html"> Find out more</a>
+                    <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php"> Find out more</a>
                   </div>
                 </div>
               </div>
@@ -237,21 +237,21 @@
         <div class="row">
           <div class="column2 image-text col-lg-6">
             <div class="nature-row editContent">
-              <h5><a href="blog.html">
+              <h5><a href="blog.php">
                   Progressive Percentage</a></h5>
               <p class="para editContent text ">
                 Mollitia placeat modi explicabo voluptatum corporis unde Dicta, provident
                 Rem adipisci Mollitia placeat modi.</p>
             </div>
             <div class="nature-row editContent">
-              <h5><a href="blog.html">
+              <h5><a href="blog.php">
                   Easy Documentation</a></h5>
               <p class="para editContent text ">
                 Mollitia placeat modi explicabo voluptatum corporis unde Dicta, provident
                 Rem adipisci Mollitia placeat modi.</p>
             </div>
             <div class="nature-row editContent">
-              <h5><a href="blog.html">
+              <h5><a href="blog.php">
                   Competitive Percentage</a></h5>
               <p class="para editContent text ">
                 Mollitia placeat modi explicabo voluptatum corporis unde Dicta, provident
@@ -280,7 +280,7 @@
           <div class="col-lg-4 col-md-6 propClone">
             <div class="about-grids editContent one-image">
               <div class="color-white">
-                <h5><a href="blog.html" class="editContent">Online Deposit</a></h5>
+                <h5><a href="blog.php" class="editContent">Online Deposit</a></h5>
                 <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                   quos, nobis culpa est</p>
               </div>
@@ -289,7 +289,7 @@
           <div class="col-lg-4 col-md-6 propClone about-line-top ">
             <div class="about-grids editContent two-image">
               <div class="color-white">
-                <h5><a href="blog.html" class="editContent">Business Plan</a></h5>
+                <h5><a href="blog.php" class="editContent">Business Plan</a></h5>
                 <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                   quos, nobis culpa est</p>
               </div>
@@ -298,7 +298,7 @@
           <div class="col-lg-4 col-md-6 propClone about-line-top ">
             <div class="about-grids editContent three-image">
               <div class="color-white">
-                <h5><a href="blog.html" class="editContent">Mobile Bank</a></h5>
+                <h5><a href="blog.php" class="editContent">Mobile Bank</a></h5>
                 <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                   quos, nobis culpa est </p>
               </div>
@@ -309,30 +309,30 @@
           <div class="col-lg-4 col-md-6 propClone about-line-top ">
             <div class="color-white editContent">
               <span class="fa fa-address-card"></span>
-              <h5><a href="blog.html" class="editContent">
+              <h5><a href="blog.php" class="editContent">
                   Account updater</a></h5>
               <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                 quos, nobis culpa est</p>
-              <a href="about.html" class="action-button btn mt-3">Read more</a>
+              <a href="about.php" class="action-button btn mt-3">Read more</a>
 
             </div>
           </div>
           <div class="col-lg-4 col-md-6 propClone about-line-top ">
             <div class="color-white editContent">
               <span class="fa fa-check-square-o"></span>
-              <h5><a href="blog.html" class="editContent">Simple checkout</a></h5>
+              <h5><a href="blog.php" class="editContent">Simple checkout</a></h5>
               <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                 quos, nobis culpa est </p>
-              <a href="about.html" class="action-button btn mt-3">Read more</a>
+              <a href="about.php" class="action-button btn mt-3">Read more</a>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 propClone about-line-top ">
             <div class="color-white editContent">
               <span class="fa fa-file-text-o"></span>
-              <h5><a href="blog.html" class="editContent">Payment invoice</a></h5>
+              <h5><a href="blog.php" class="editContent">Payment invoice</a></h5>
               <p class="para editContent">Sit amet consect etur adipi sicing elit. Rem quib usdam corporis, dolores
                 quos, nobis culpa est</p>
-              <a href="about.html" class="action-button btn mt-3">Read more</a>
+              <a href="about.php" class="action-button btn mt-3">Read more</a>
             </div>
           </div>
         </div>
@@ -418,7 +418,7 @@
         <div class="row">
           <div class="col-lg-6 blog-gap-top propClone">
             <div class="image-up">
-              <a href="blog-single.html">
+              <a href="blog-single.php">
                 <img src="assets/images/b5.jpg" alt="" class="img-responsive"></a>
               <div class="blog-post editContent">
                 <ul>
@@ -434,7 +434,7 @@
                   </li>
                 </ul>
               </div>
-              <h3> <a href="blog-single.html" class="blog-link editContent">Tationem cum minus volup tatum repreh
+              <h3> <a href="blog-single.php" class="blog-link editContent">Tationem cum minus volup tatum repreh
                   enderit </a>
               </h3>
               <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
@@ -445,7 +445,7 @@
           <div class="col-lg-6 blog-gap-top propClone">
 
             <div class="image-up">
-              <a href="blog-single.html">
+              <a href="blog-single.php">
                 <img src="assets/images/b7.jpg" alt="" class="img-responsive"></a>
               <div class="blog-post editContent">
                 <ul>
@@ -461,7 +461,7 @@
                   </li>
                 </ul>
               </div>
-              <h3> <a href="blog-single.html" class="blog-link editContent">Laborum nostrum itaque veritatis exerci
+              <h3> <a href="blog-single.php" class="blog-link editContent">Laborum nostrum itaque veritatis exerci
                   onem cum minus </a>
               </h3>
               <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
@@ -472,7 +472,7 @@
           <div class="col-lg-6 blog-gap-top propClone">
 
             <div class="image-up">
-              <a href="blog-single.html">
+              <a href="blog-single.php">
                 <img src="assets/images/b6.jpg" alt="" class="img-responsive"></a>
               <div class="blog-post editContent">
                 <ul>
@@ -488,7 +488,7 @@
                   </li>
                 </ul>
               </div>
-              <h3> <a href="blog-single.html" class="blog-link editContent">Error non natus assumenda. Laborum,
+              <h3> <a href="blog-single.php" class="blog-link editContent">Error non natus assumenda. Laborum,
                   nostrum itaque</a>
               </h3>
               <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
@@ -499,7 +499,7 @@
           <div class="col-lg-6 blog-gap-top propClone">
 
             <div class="image-up">
-              <a href="blog-single.html">
+              <a href="blog-single.php">
                 <img src="assets/images/b4.jpg" alt="" class="img-responsive"></a>
               <div class="blog-post editContent">
                 <ul>
@@ -515,7 +515,7 @@
                   </li>
                 </ul>
               </div>
-              <h3> <a href="blog-single.html" class="blog-link editContent">Illum error non natus assumenda nostrum
+              <h3> <a href="blog-single.php" class="blog-link editContent">Illum error non natus assumenda nostrum
                   itaque veritatis</a>
               </h3>
               <p class="para mt-3">Earum consequatur ab nisi illum error non natus assumenda. Laborum, nostrum itaque
@@ -610,7 +610,7 @@
         <div class="row footer-top-29">
           <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
             <div class="left-side">
-              <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left"
+              <h2 class="footer-title-29"><a href="index.php"><span class="mr-1"><img class="logo p-1 float-left"
                       src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
                     <p class="para">Global Investment Company Ltd.</p>
                   </span></a></h2>
@@ -622,30 +622,30 @@
           <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">About</h6>
-              <li><a href="services.html">How it Works</a></li>
-              <li><a href="services.html">Guarantee</a></li>
-              <li><a href="services.html">Security</a></li>
-              <li><a href="services.html">Our story</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="services.php">How it Works</a></li>
+              <li><a href="services.php">Guarantee</a></li>
+              <li><a href="services.php">Security</a></li>
+              <li><a href="services.php">Our story</a></li>
+              <li><a href="contact.php">Contact us</a></li>
             </ul>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">Solution</h6>
-              <li><a href="services.html">Car Loan</a></li>
-              <li><a href="services.html">Personal Loan</a></li>
-              <li><a href="services.html">Education Loan</a></li>
-              <li><a href="services.html">Business Loan</a></li>
-              <li><a href="services.html">Home Loan</a></li>
+              <li><a href="services.php">Car Loan</a></li>
+              <li><a href="services.php">Personal Loan</a></li>
+              <li><a href="services.php">Education Loan</a></li>
+              <li><a href="services.php">Business Loan</a></li>
+              <li><a href="services.php">Home Loan</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
             <ul>
               <h6 class="footer-title-29">Need Help?</h6>
-              <li><a href="contact.html">Find a branch</a></li>
-              <li><a href="about.html">FAQs</a></li>
-              <li><a href="contact.html">APR</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="contact.php">Find a branch</a></li>
+              <li><a href="about.php">FAQs</a></li>
+              <li><a href="contact.php">APR</a></li>
+              <li><a href="contact.php">Contact us</a></li>
             </ul>
           </div>
         </div>

@@ -20,7 +20,7 @@
   <header class="absolute-top">
     <div class="container-fluid pr-lg-0">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="nav-link" href="index.html"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
+        <a class="nav-link" href="index.php"><img class="logo p-1 float-left" src="assets/images/Molseka6.jpg"
             alt="Molseka logo"><span>
             <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
           </span></a>
@@ -32,10 +32,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item @@about__active">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item dropdown @@pages__active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -43,14 +43,14 @@
                 pages
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="services.html">Services</a>
-                <a class="dropdown-item " href="blog.html" class="drop-text">Blog</a>
-                <a class="dropdown-item" href="blog-single.html" class="drop-text">Blog Single</a>
-                <a class="dropdown-item" href="landing-page.html" class="drop-text">landing page</a>
+                <a class="dropdown-item" href="services.php">Services</a>
+                <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
+                <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
+                <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
               </div>
             </li>
             <li class="nav-item @@contact__active">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
             <li class="nav-item ml-lg-3">
               <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span class="fa fa-volume-control-phone"></span>
@@ -97,7 +97,7 @@
                   <h5>Are you looking for a smart and convenient way to grow your wealth?</h5>
                   <p>Look no further than our exceptional range of mutual funds. Let us tell you why investing in
                     mutual funds can be an excellent choice for achieving your financial goals.</p>
-                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php">Find out more</a>
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@
                   <p>Discover the key to unlocking the power of wealth with our expert guidance and personalized
                     solutions. Maximize your financial potential and create a legacy that lasts for generations to
                     come.</p>
-                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php">Find out more</a>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
                   <p>Embark on a journey towards financial growth with our expert guidance. We help you navigate the
                     path to success, offering tailored solutions to maximize your wealth and secure a prosperous
                     future.</p>
-                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+                  <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php">Find out more</a>
                 </div>
               </div>
             </div>
@@ -195,7 +195,7 @@
           <p class="para">Embrace the future with our cutting-edge technology solutions. Stay ahead of the curve and
             harness the power of innovation to enhance efficiency, productivity, and competitiveness in your
             business operations.</p>
-          <a href="about.html" class="action-button btn mt-3">Read more</a>
+          <a href="about.php" class="action-button btn mt-3">Read more</a>
         </div>
         <div class="grids-1 grids-effect-2">
           <span class="fa fa-thumbs-o-up"></span>
@@ -203,7 +203,7 @@
           <p class="para">Experience a personalized approach to financial solutions tailored to your unique needs
             and goals. Our dedicated team provides customized strategies and guidance to help you achieve financial
             success and peace of mind.</p>
-          <a href="about.html" class="action-button btn mt-3">Read more</a>
+          <a href="about.php" class="action-button btn mt-3">Read more</a>
         </div>
         <div class="grids-1 grids-effect">
           <span class="fa fa-eye"></span>
@@ -211,7 +211,7 @@
           <p class="para">Stay ahead of the competition with our proactive research and analysis services. Our
             expert team uncovers valuable insights, identifies emerging trends, and provides strategic
             recommendations to fuel your business growth.</p>
-          <a href="about.html" class="action-button btn mt-3">Read more</a>
+          <a href="about.php" class="action-button btn mt-3">Read more</a>
         </div>
         <div class="grids-1 grids-effect-2">
           <span class="fa fa-handshake-o"></span>
@@ -219,7 +219,7 @@
           <p class="para">Experience transparent communication that builds trust and strengthens relationships. We
             believe in open and honest dialogue, ensuring clear understanding and fostering a collaborative
             environment for effective decision-making and mutual success.</p>
-          <a href="about.html" class="action-button btn mt-3">Read more</a>
+          <a href="about.php" class="action-button btn mt-3">Read more</a>
         </div>
       </div>
     </div>
@@ -231,7 +231,7 @@
       <div class="row">
         <div class="column2 image-text col-lg-6">
           <div class="nature-row editContent">
-            <h5><a href="blog.html">
+            <h5><a href="blog.php">
                 Retire with Confidence</a></h5>
             <p class="para editContent text ">
               Retire with confidence and peace of mind, knowing that your future is secure. Our expert retirement
@@ -239,7 +239,7 @@
               retirement.</p>
           </div>
           <div class="nature-row editContent">
-            <h5><a href="blog.html">
+            <h5><a href="blog.php">
                 Expert Investment Advisory Services</a></h5>
             <p class="para editContent text ">
               Leverage our expert investment advisory services to make informed financial decisions. Our team of
@@ -247,7 +247,7 @@
               returns and long-term success.</p>
           </div>
           <div class="nature-row editContent">
-            <h5><a href="blog.html">
+            <h5><a href="blog.php">
                 Gain Insight with Portfolio Analysis and Reporting</a></h5>
             <p class="para editContent text ">
               Make informed investment decisions with our portfolio analysis and reporting services. Gain valuable
@@ -287,7 +287,7 @@
           <div class="col-lg-4 col-md-6 editContent jst-coloums">
             <div class="column color-2">
               <span class="fa fa-handshake-o" aria-hidden="true"></span>
-              <h4><a href="about.html" class=" editContent">Revolutionizing with Innovation</a></h4>
+              <h4><a href="about.php" class=" editContent">Revolutionizing with Innovation</a></h4>
               <p class="para editContent">Embrace innovation and revolutionize your business with our cutting-edge
                 solutions. Experience the power of innovation as we help you stay ahead of the competition and drive
                 growth in today's dynamic market.</p>
@@ -298,7 +298,7 @@
           <div class="col-lg-4 col-md-6 editContent jst-coloums">
             <div class="column color-2">
               <span class="fa fa-shield" aria-hidden="true"></span>
-              <h4><a href="about.html" class=" editContent">Unparalleled Support at Your Fingertips</a></h4>
+              <h4><a href="about.php" class=" editContent">Unparalleled Support at Your Fingertips</a></h4>
               <p class="para editContent">Experience unparalleled support right at your fingertips. Our dedicated
                 team is ready to assist you with personalized solutions, empowering you to navigate complexities and
                 achieve your objectives with ease.</p>
@@ -309,7 +309,7 @@
           <div class="col-lg-4 col-md-6 editContent jst-coloums">
             <div class="column color-2">
               <span class="fa fa-history" aria-hidden="true"></span>
-              <h4><a href="about.html" class=" editContent">Punctuality at Its Finest
+              <h4><a href="about.php" class=" editContent">Punctuality at Its Finest
                 </a></h4>
               <p class="para editContent">Experience punctuality at its finest with our commitment to timeliness. We
                 prioritize delivering on time, ensuring efficiency and reliability in every aspect of our services.
@@ -332,7 +332,7 @@
         <p class="para">Forge lasting partnerships and unlock global opportunities with our trusted integration
           partner. Through strong, long-term relationships, we ensure mutual growth and success in today's
           interconnected business landscape.</p>
-        <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.html">Find out more</a>
+        <a class="btn btn-theme2 mt-md-5 mt-4" href="contact.php">Find out more</a>
       </div>
     </div>
   </div>
@@ -351,20 +351,20 @@
       <div class="gallery-image row">
         <div class="img-box col-lg-4 col-md-6">
           <img src="assets/images/b3.jpg" alt="product" class="img-responsive ">
-          <h5 class="my-2"><a href="about.html">Protecting Your Finances</a></h5>
+          <h5 class="my-2"><a href="about.php">Protecting Your Finances</a></h5>
           <p class="para">Secure your financial future with our robust protection solutions. Safeguard your assets,
             investments, and income against unexpected events and uncertainties, ensuring stability and peace of
             mind for you and your loved ones.</p>
         </div>
         <div class="img-box col-lg-4 col-md-6">
           <img src="assets/images/b1.jpg" alt="product" class="img-responsive ">
-          <h5 class="my-2"><a href="about.html">Guranteed Growth</a></h5>
+          <h5 class="my-2"><a href="about.php">Guranteed Growth</a></h5>
           <p class="para">Experience assured and steady growth for your investments with our guaranteed growth
             solutions. Achieve your financial goals with confidence and peace of mind.</p>
         </div>
         <div class="img-box col-lg-4 col-md-6">
           <img src="assets/images/b2.jpg" alt="product" class="img-responsive ">
-          <h5 class="my-2"><a href="about.html">Empowering Businesses with Comprehensive Support</a></h5>
+          <h5 class="my-2"><a href="about.php">Empowering Businesses with Comprehensive Support</a></h5>
           <p class="para">Get the support your business needs to thrive and succeed. Our comprehensive business
             support services empower you to overcome challenges, seize opportunities, and achieve your goals with
             confidence.</p>
@@ -395,7 +395,7 @@
       <div class="row footer-top-29">
         <div class="col-lg-4 col-md-6 col-sm-8 footer-list-29 footer-1">
           <div class="left-side">
-            <h2 class="footer-title-29"><a href="index.html"><span class="mr-1"><img class="logo p-1 float-left"
+            <h2 class="footer-title-29"><a href="index.php"><span class="mr-1"><img class="logo p-1 float-left"
                     src="assets/images/Molseka6.jpg" alt="Molseka logo"></span>MOLSEKA <span>
                   <p class="para">Global Investment Company Ltd.</p>
                 </span></a></h2>
@@ -407,30 +407,30 @@
         <div class="col-lg-3 col-md-3 col-sm-4 footer-list-29 footer-2 ">
           <ul>
             <h6 class="footer-title-29">About</h6>
-            <li><a href="services.html">How it Works</a></li>
-            <li><a href="services.html">Guarantee</a></li>
-            <li><a href="services.html">Security</a></li>
-            <li><a href="services.html">Our story</a></li>
-            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="services.php">How it Works</a></li>
+            <li><a href="services.php">Guarantee</a></li>
+            <li><a href="services.php">Security</a></li>
+            <li><a href="services.php">Our story</a></li>
+            <li><a href="contact.php">Contact us</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
           <ul>
             <h6 class="footer-title-29">Solution</h6>
-            <li><a href="services.html">Car Loan</a></li>
-            <li><a href="services.html">Personal Loan</a></li>
-            <li><a href="services.html">Education Loan</a></li>
-            <li><a href="services.html">Business Loan</a></li>
-            <li><a href="services.html">Home Loan</a></li>
+            <li><a href="services.php">Car Loan</a></li>
+            <li><a href="services.php">Personal Loan</a></li>
+            <li><a href="services.php">Education Loan</a></li>
+            <li><a href="services.php">Business Loan</a></li>
+            <li><a href="services.php">Home Loan</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-6 footer-list-29 footer-2 ">
           <ul>
             <h6 class="footer-title-29">Need Help?</h6>
-            <li><a href="contact.html">Find a branch</a></li>
-            <li><a href="about.html">FAQs</a></li>
-            <li><a href="contact.html">APR</a></li>
-            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="contact.php">Find a branch</a></li>
+            <li><a href="about.php">FAQs</a></li>
+            <li><a href="contact.php">APR</a></li>
+            <li><a href="contact.php">Contact us</a></li>
           </ul>
         </div>
       </div>
