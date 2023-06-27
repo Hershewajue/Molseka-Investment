@@ -1,3 +1,30 @@
+<?php
+// Assuming you have already established a database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "molseka_investments";
+
+// Create a new PDO instance
+try {
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// Fetch blog posts from the database
+$stmt = $pdo->prepare("SELECT * FROM blog_posts");
+$stmt->execute();
+$blogPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Return the JSON response
+header("Content-Type: application/json");
+echo json_encode($blogPosts);
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -103,7 +130,7 @@
     </div>
   </section>
   <!-- breadcrumbs //-->
-  <!-- blog block -->
+  <!-- blog block 
   <section class="w3l-services-6">
     <div class="services-layout editContent">
       <div class="container">
@@ -292,7 +319,110 @@
     </div>
     </div>
   </section>
+  //blog block -->
+  
+  <!-- blog block -->
+  <section class="w3l-services-6">
+    <div class="services-layout editContent">
+      <div class="container">
+        <div class="main-titles-head">
+          <h3 class="header-name editContent">
+            Our Awesome Blog Page
+          </h3>
+          <p class="tiltle-para editContent editContent">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+            fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
+        </div>
+        <div id="blogContainer" class="row"></div>
+        <nav id="pagination" aria-label="Page navigation example">
+          <ul class="pagination justify-content-center mt-sm-5 mt-4 mb-0">
+            <li class="page-item disabled">
+              <a class="page-link page-prev" href="#previous" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link page-number" href="#1">1</a></li>
+            <li class="page-item active"><a class="page-link page-number" href="#2">2</a></li>
+            <li class="page-item"><a class="page-link page-number" href="#3">3</a></li>
+            <li class="page-item"><a class="page-link page-next" href="#next">→</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Variables to keep track of the current page and number of posts per page
+    let currentPage = 1;
+    const postsPerPage = 6;
+
+    // Function to fetch and append blog posts
+    function fetchBlogPosts() {
+      // Send a request to your backend API with the current page and postsPerPage values
+      fetch(`/api/blog?page=${currentPage}&limit=${postsPerPage}`)
+        .then(response => response.json())
+        .then(data => {
+          const blogContainer = document.getElementById('blogContainer');
+
+          // Loop through the retrieved blog posts and append them to the container
+          data.posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.classList.add('col-lg-6', 'blog-gap-top', 'propClone');
+            postElement.innerHTML = `
+            <div class="image-up">
+              <a href="blog-single.html">
+                <img src="${post.image}" alt="" class="img-responsive"></a>
+              <div class="blog-post editContent">
+                <ul>
+                  <li class="propClone mr-3">
+                    <p class="blog-para editContent price"><span class="fa fa-user"></span><a href="#page">Admin</a>
+                    </p>
+                  </li>
+                  <li class="propClone mr-3">
+                    <p class="blog-para editContent price"><span class="fa fa-calendar"></span> ${post.date}</p>
+                  </li>
+                  <li class="propClone">
+                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment ( ${post.commentsCount} )</p>
+                  </li>
+                </ul>
+              </div>
+              <h3> <a href="blog-single.html" class="blog-link editContent">${post.title}</a></h3>
+              <p class="para mt-3">${post.content}</p>
+            </div>
+          `;
+            blogContainer.appendChild(postElement);
+          });
+
+          // Update the pagination links
+          const pagination = document.getElementById('pagination');
+          const pageLinks = pagination.getElementsByClassName('page-number');
+          for (let i = 0; i < pageLinks.length; i++) {
+            pageLinks[i].setAttribute('href', `#${i + 1}`);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching blog posts:', error);
+        });
+    }
+
+    // Function to handle page navigation
+    function navigateToPage(page) {
+      currentPage = page;
+      fetchBlogPosts();
+    }
+
+    // Event listener for page number clicks
+    const pageLinks = document.getElementsByClassName('page-number');
+    for (let i = 0; i < pageLinks.length; i++) {
+      pageLinks[i].addEventListener('click', function (event) {
+        event.preventDefault();
+        const page = parseInt(this.getAttribute('href').substring(1));
+        navigateToPage(page);
+      });
+    }
+
+    // Fetch initial blog posts on page load
+    fetchBlogPosts();
+  </script>
   <!-- //blog block -->
+
   <!-- /team-grids -->
   </section>
   <section class="w3l-about">
