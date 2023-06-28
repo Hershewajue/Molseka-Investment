@@ -139,8 +139,24 @@ if ($blogPost) {
                       <?php echo $date; ?>
                     </p>
                   </li>
+                  <?php
+                  require_once('connect.php');
+
+                  // Get the current post_id from the URL parameter
+                  $postId = $_GET['id'];
+
+                  // Fetch comments for the specific post_id from the 'comments' table
+                  $sql = "SELECT COUNT(*) as comment_count FROM comments WHERE post_id = :post_id";
+                  $stmt = $pdo->prepare($sql);
+                  $stmt->bindParam(":post_id", $postId);
+                  $stmt->execute();
+                  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                  $commentCount = $result['comment_count'];
+                  ?>
                   <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (07)</p>
+                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (
+                      <?php echo $commentCount; ?>)
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -303,19 +319,33 @@ if ($blogPost) {
     <div class="comments-main editContent">
       <div class="container">
         <div class="sec-cont-comment">
-          <h3 class="aside-title editContent">Recent Comments (3)</h3>
+          <?php
+          require_once('connect.php');
+
+          // Get the current post_id from the URL parameter
+          $postId = $_GET['id'];
+
+          // Fetch comments for the specific post_id from the 'comments' table
+          $sql = "SELECT COUNT(*) as comment_count FROM comments WHERE post_id = :post_id";
+          $stmt = $pdo->prepare($sql);
+          $stmt->bindParam(":post_id", $postId);
+          $stmt->execute();
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          $commentCount = $result['comment_count'];
+          ?>
+          <h3 class="aside-title editContent">Recent Comments (
+            <?php echo $commentCount; ?>)
+          </h3>
           <div class="comments-grids">
             <?php
-            // Fetch comments by ID from the 'comments' table
-            require_once('connect.php'); // Include your database connection code
-            
-            $sql = "SELECT * FROM comments";
+            $sql = "SELECT * FROM comments WHERE post_id = :post_id";
             $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":post_id", $postId);
             $stmt->execute();
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($comments as $comment) {
-              $date = date('F d', strtotime($comment['created_at'])); // Fix: Use $comment instead of $row
+              $date = date('F d', strtotime($comment['created_at']));
               echo '<div class="media-comments editContent">';
               echo '<div class="img-comment editContent">';
               echo '<img class="img-responsive" src="assets/images/' . $comment['user_img'] . '" alt="image">';
@@ -324,70 +354,50 @@ if ($blogPost) {
               echo '<ul class="">';
               echo '<li class="font-weight-bold editContent">' . $date . '</li>';
               echo '</ul>';
-              echo '<p class="para editContent mt-2">' . $comment['message'] . '</p>';
+              echo '<p class="para editContent mt-2">' . $comment['messages'] . '</p>';
               echo '<h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>';
               echo '</div>';
               echo '</div>';
               echo '</div>';
             }
             ?>
-
           </div>
         </div>
       </div>
     </div>
   </section>
-  <?php
-  // Include your database connection code (connect.php or similar)
-  require_once('connect.php');
-
-  // Check if the form is submitted
-  if (isset($_POST['post_comment'])) {
-    // Retrieve the form data
-    $user_name = $_POST['user_name'];
-    $user_img = $_FILES['user_img']['name'];
-    $user_img_tmp = $_FILES['user_img']['tmp_name'];
-    $email = $_POST['email'];
-    $message = $_POST['messages'];
-
-    // Check if a file was uploaded
-    if (!empty($user_img_tmp)) {
-      // Move the uploaded file to a desired location
-      $upload_dir = 'assets/images/';
-      $target_file = $upload_dir . basename($user_img);
-
-      if (move_uploaded_file($user_img_tmp, $target_file)) {
-        try {
-          // Create a new PDO instance
-          $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          // Prepare the SQL statement
-          $sql = "INSERT INTO comments (user_name, user_img, email, messages) VALUES (:user_name, :user_img, :email, :messages)";
-          $stmt = $pdo->prepare($sql);
-
-          // Bind the parameters
-          $stmt->bindParam(":user_name", $user_name);
-          $stmt->bindParam(":user_img", $user_img);
-          $stmt->bindParam(":email", $email);
-          $stmt->bindParam(":messages", $messages);
-
-          // Execute the statement
-          $stmt->execute();
-
-          echo '<script>alert("Comment posted successfully.");</script>';
-        } catch (PDOException $e) {
-          echo '<script>alert("Error posting comment: ' . $e->getMessage() . '");</script>';
-        }
-      } else {
-        echo '<script>alert("Error moving the uploaded file.");</script>';
-      }
-    } else {
-      echo '<script>alert("Please upload an image.");</script>';
-    }
-  }
-  ?>
-
+  <section class="w3l-comments-form-11">
+    <div class="coments-forms-sub editContent">
+      <div class="container">
+        <div class="testi-top">
+          <h3 class="title-main2 editContent">Leave A Message</h3>
+          <div class="form-commets">
+            <form action="blog-single.php?id=<?php echo $postId; ?>" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="post_id" value="<?php echo $postId; ?>">
+              <div class="media-class mb-2 pb-1">
+                <div class="editContent">
+                  <input type="text" name="user_name" placeholder="Your Name" required>
+                </div>
+                <div class="editContent">
+                  <input type="file" name="user_img" id="user_img" required>
+                </div>
+                <div class="editContent">
+                  <input type="email" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="editContent">
+                <textarea name="messages" id="messages" required="" placeholder="Write your comments here"></textarea>
+              </div>
+              <div class="text-right">
+                <button class="btn button-eff action-button" name="post_comment" id="post_comment" type="submit">Post
+                  comment</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="w3l-footer-29-main">
     <div class="footer-29 py-5">

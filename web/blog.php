@@ -146,13 +146,25 @@ $totalPages = ceil($totalPosts / $postsPerPage);
             fuga sit illo modi aut aspernatur tempore laboriosam saepe dolores eveniet.</p>
         </div>
         <div class="row">
-          <?php if (count($blogPosts) > 0) {
+          <?php
+          if (count($blogPosts) > 0) {
             foreach ($blogPosts as $row) {
               // Limit the content to 30 words
               $content = implode(' ', array_slice(explode(' ', $row['content']), 0, 30));
               $content .= '...';
               // Extract only the date from the created_at column
               $date = date('Y-m-d', strtotime($row['created_at']));
+
+              // Get the current post_id from the URL parameter
+              $postId = isset($_GET['id']) ? $_GET['id'] : '';
+
+              // Fetch comments for the specific post_id from the 'comments' table
+              $sql = "SELECT COUNT(*) as comment_count FROM comments WHERE post_id = :post_id";
+              $stmt = $pdo->prepare($sql);
+              $stmt->bindParam(":post_id", $row['id']); // Use $row['id'] instead of $postId
+              $stmt->execute();
+              $result = $stmt->fetch(PDO::FETCH_ASSOC);
+              $commentCount = $result['comment_count'];
               ?>
               <div class="col-lg-6 blog-gap-top propClone">
                 <div class="image-up">
@@ -162,8 +174,7 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                   <div class="blog-post editContent">
                     <ul>
                       <li class="propClone mr-3">
-                        <p class="blog-para price"><span class="fa fa-user"></span><a href="#page">Admin</a>
-                        </p>
+                        <p class="blog-para price"><span class="fa fa-user"></span><a href="#page">Admin</a></p>
                       </li>
                       <li class="propClone mr-3">
                         <p class="blog-para price"><span class="fa fa-calendar"></span>
@@ -171,7 +182,8 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                         </p>
                       </li>
                       <li class="propClone">
-                        <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (07)</p>
+                        <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (<?php echo $commentCount; ?>)
+                        </p>
                       </li>
                     </ul>
                   </div>
@@ -186,13 +198,18 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                   <a href="blog-single.php?id=<?php echo $row['id']; ?>" class="blog-btn btn">Read More</a>
                 </div>
               </div>
-            <?php }
-          } else { ?>
+              <?php
+            }
+          } else {
+            ?>
           <div class="col-md-12 text-center">
             <p>No blog posts found.</p>
           </div>
-          <?php } ?>
+          <?php
+          }
+          ?>
         </div>
+
       </div>
     </div>
   </section>
