@@ -182,7 +182,8 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                         </p>
                       </li>
                       <li class="propClone">
-                        <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (<?php echo $commentCount; ?>)
+                        <p class="blog-para price"><span class="fa fa-comment-o"></span> Comment (
+                          <?php echo $commentCount; ?>)
                         </p>
                       </li>
                     </ul>
@@ -337,6 +338,11 @@ $totalPages = ceil($totalPosts / $postsPerPage);
               <li><a href="about.php">FAQs</a></li>
               <li><a href="contact.php">APR</a></li>
               <li><a href="contact.php">Contact us</a></li>
+              <li><a href="#">
+                  <div class="visitor-counter">
+                    <?php include('visitor_counter.php'); ?>
+                  </div>
+                </a></li>
             </ul>
           </div>
         </div>

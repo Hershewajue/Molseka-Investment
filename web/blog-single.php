@@ -154,7 +154,8 @@ if ($blogPost) {
                   $commentCount = $result['comment_count'];
                   ?>
                   <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (<?php echo $commentCount; ?>)
+                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (
+                      <?php echo $commentCount; ?>)
                     </p>
                   </li>
                 </ul>
@@ -195,7 +196,7 @@ if ($blogPost) {
               $postId = $row['id'];
               $title = implode(' ', array_slice(explode(' ', $row['title']), 0, 10));
               $title .= '...';
-              
+
               ?>
               <div class="blog-right-side-post editContent">
                 <div class="single-blog-image">
@@ -292,28 +293,32 @@ if ($blogPost) {
           <!-- gallery -->
           <!-- Blog Archives-->
           <?php
-require_once('connect.php');
+          require_once('connect.php');
 
-// Fetch count for each category from the 'category' table
-$sql = "SELECT category, COUNT(*) as category_count FROM blog_posts GROUP BY category";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+          // Fetch count for each category from the 'category' table
+          $sql = "SELECT category, COUNT(*) as category_count FROM blog_posts GROUP BY category";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute();
+          $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          ?>
 
-<div class="category-list editContente blog-right-single">
-  <div class="comments-grid-right">
-    <h5 class="editContent">Categories</h5>
-  </div>
-  <ul>
-    <?php foreach ($categories as $category) : ?>
-      <li class="propClone">
-        <a href="blog.php" class="editContent"><?php echo $category['category']; ?></a>
-        <a href="blog.php" class="editContent sub-number"><?php echo $category['category_count']; ?></a>
-      </li>
-    <?php endforeach; ?>
-  </ul>
-</div>
+          <div class="category-list editContente blog-right-single">
+            <div class="comments-grid-right">
+              <h5 class="editContent">Categories</h5>
+            </div>
+            <ul>
+              <?php foreach ($categories as $category): ?>
+                <li class="propClone">
+                  <a href="blog.php" class="editContent">
+                    <?php echo $category['category']; ?>
+                  </a>
+                  <a href="blog.php" class="editContent sub-number">
+                    <?php echo $category['category_count']; ?>
+                  </a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
 
           <!--Blog Archives-->
         </div>
@@ -338,7 +343,8 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
           $commentCount = $result['comment_count'];
           ?>
-          <h3 class="aside-title editContent">Recent Comments (<?php echo $commentCount; ?>)
+          <h3 class="aside-title editContent">Recent Comments (
+            <?php echo $commentCount; ?>)
           </h3>
           <div class="comments-grids">
             <?php
@@ -347,7 +353,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt->bindParam(":post_id", $postId);
             $stmt->execute();
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+
             foreach ($comments as $comment) {
               $date = date('F d', strtotime($comment['created_at']));
               echo '<div class="media-comments editContent">';
@@ -445,6 +451,11 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <li><a href="about.php">FAQs</a></li>
               <li><a href="contact.php">APR</a></li>
               <li><a href="contact.php">Contact us</a></li>
+              <li><a href="#">
+                  <div class="visitor-counter">
+                    <?php include('visitor_counter.php'); ?>
+                  </div>
+                </a></li>
             </ul>
           </div>
         </div>

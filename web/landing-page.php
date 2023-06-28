@@ -645,6 +645,11 @@
               <li><a href="about.php">FAQs</a></li>
               <li><a href="contact.php">APR</a></li>
               <li><a href="contact.php">Contact us</a></li>
+              <li><a href="#">
+                  <div class="visitor-counter">
+                    <?php include('visitor_counter.php'); ?>
+                  </div>
+                </a></li>
             </ul>
           </div>
         </div>

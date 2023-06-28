@@ -377,40 +377,40 @@
 require_once('connect.php');
 
 if (isset($_POST['upload'])) {
-    $email = $_POST["email"];
+  $email = $_POST["email"];
 
-    if (!empty($email)) {
-        try {
-            // Create a new PDO instance
-            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  if (!empty($email)) {
+    try {
+      // Create a new PDO instance
+      $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Check if email exists in the database
-            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
-            $checkStmt->bindParam(":email", $email);
-            $checkStmt->execute();
-            $count = $checkStmt->fetchColumn();
+      // Check if email exists in the database
+      $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
+      $checkStmt->bindParam(":email", $email);
+      $checkStmt->execute();
+      $count = $checkStmt->fetchColumn();
 
-            if ($count > 0) {
-                echo '<script>alert("Email already exists.");</script>';
-            } else {
-                // Prepare the SQL statement
-                $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
-                $insertStmt->bindParam(":email", $email);
+      if ($count > 0) {
+        echo '<script>alert("Email already exists.");</script>';
+      } else {
+        // Prepare the SQL statement
+        $insertStmt = $pdo->prepare("INSERT INTO newsletter (email) VALUES (:email)");
+        $insertStmt->bindParam(":email", $email);
 
-                // Execute the statement
-                $insertStmt->execute();
+        // Execute the statement
+        $insertStmt->execute();
 
-                echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
-            }
-        } catch (PDOException $e) {
-            echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
-        }
-    } else {
-        echo '<script>alert("Email field cannot be empty.");</script>';
+        echo '<script>alert("You have successfully signed up for our Newsletter.");</script>';
+      }
+    } catch (PDOException $e) {
+      echo '<script>alert("Error uploading newsletter sign-up: ' . $e->getMessage() . '");</script>';
     }
+  } else {
+    echo '<script>alert("Email field cannot be empty.");</script>';
+  }
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo '<script>alert("Error processing newsletter sign-up.");</script>';
+  echo '<script>alert("Error processing newsletter sign-up.");</script>';
 }
 ?>
 
@@ -419,9 +419,11 @@ if (isset($_POST['upload'])) {
     <div class="container">
       <div class="cover-back img-thumbnail p-3">
         <h3 class="header-name editContent">Subscribe to Our Newsletter</h3>
-        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special offers.</p>
+        <p class="tiltle-para editContent m-3">Stay updated with our latest news, investment insights, and special
+          offers.</p>
         <form action="index.php" method="post">
-          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email" placeholder="name@example.com" required>
+          <input type="email" class="form-control mt-3" id="exampleFormControlInput1" name="email"
+            placeholder="name@example.com" required>
           <button type="submit" name="upload" class="btn btn-success m-3">Subscribe!</button>
         </form>
       </div>
@@ -471,6 +473,11 @@ if (isset($_POST['upload'])) {
             <li><a href="about.php">FAQs</a></li>
             <li><a href="contact.php">APR</a></li>
             <li><a href="contact.php">Contact us</a></li>
+            <li><a href="#">
+                <div class="visitor-counter">
+                  <?php include('visitor_counter.php'); ?>
+                </div>
+              </a></li>
           </ul>
         </div>
       </div>

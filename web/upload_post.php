@@ -172,25 +172,26 @@ try {
                                         <div class="invalid-feedback">Please enter post title.</div>
                                     </div>
                                     <div class="row">
-                                    <div class="mb-3 col">
-                                        <label for="post_img" class="form-label">Category</label>
-                                        <select class="form-control" name="category" id="category" required>
-                                            <option readonly>Select one option</option>
-                                            <option value="Advice and Guides">Advice and Guides</option>
-                                            <option value="Mobile Bank">Mobile Bank</option>
-                                            <option value="Professional Services">Professional Services</option>
-                                            <option value="Making Internet">Making Internet</option>
-                                            <option value="On time Service">On time Service</option>
-                                            <option value="Investments">Investments</option>
-                                            <option value="Mutual Funds">Mutual Funds</option>
-                                        </select>
-                                        <div class="invalid-feedback">Please select a category.</div>
-                                    </div>
-                                    <div class="mb-3 col">
-                                        <label for="post_img" class="form-label">Upload post's image</label>
-                                        <input type="file" class="form-control" id="post_img" name="post_img" required>
-                                        <div class="invalid-feedback">Please upload an image for the post.</div>
-                                    </div>
+                                        <div class="mb-3 col">
+                                            <label for="post_img" class="form-label">Category</label>
+                                            <select class="form-control" name="category" id="category" required>
+                                                <option readonly>Select one option</option>
+                                                <option value="Advice and Guides">Advice and Guides</option>
+                                                <option value="Mobile Bank">Mobile Bank</option>
+                                                <option value="Professional Services">Professional Services</option>
+                                                <option value="Making Internet">Making Internet</option>
+                                                <option value="On time Service">On time Service</option>
+                                                <option value="Investments">Investments</option>
+                                                <option value="Mutual Funds">Mutual Funds</option>
+                                            </select>
+                                            <div class="invalid-feedback">Please select a category.</div>
+                                        </div>
+                                        <div class="mb-3 col">
+                                            <label for="post_img" class="form-label">Upload post's image</label>
+                                            <input type="file" class="form-control" id="post_img" name="post_img"
+                                                required>
+                                            <div class="invalid-feedback">Please upload an image for the post.</div>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="content" class="form-label">Content</label>
@@ -253,6 +254,11 @@ try {
                             <li><a href="about.php">FAQs</a></li>
                             <li><a href="contact.php">APR</a></li>
                             <li><a href="contact.php">Contact us</a></li>
+                            <li><a href="#">
+                                    <div class="visitor-counter">
+                                        <?php include('visitor_counter.php'); ?>
+                                    </div>
+                                </a></li>
                         </ul>
                     </div>
                 </div>
