@@ -179,7 +179,7 @@ if ($blogPost) {
           <!-- latest posts -->
           <div class="latest-posts blog-right-single">
             <div class="comments-grid-right">
-              <h5 class="editContent">Recent posts</h5>
+              <h5 class="editContent"><a href="blog.php">Recent posts</a></h5>
             </div>
 
             <?php
@@ -223,64 +223,64 @@ if ($blogPost) {
             </div>
             <div class="gallery-single-wthree">
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="blog.php">
                   <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
 
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f4.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f4.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f3.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f2.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
 
               <div class="gallery-tab editContent">
-                <a href="blog-single.php">
+                <a href="#">
                   <img src="assets/images/f1.jpg" alt="news image" class="img-responsive">
                 </a>
               </div>
@@ -293,20 +293,20 @@ if ($blogPost) {
               <h5 class="editContent">Categories</h5>
             </div>
             <ul>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Advice and Guides</a> <a
-                  href="blog-single.php" class="editContent sub-number">5</a></a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Mobile Bank</a> <a
-                  href="blog-single.php" class="editContent sub-number">6</a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Professional Services</a><a
-                  href="blog-single.php" class="editContent sub-number">3</a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Making Internet </a><a
-                  href="blog-single.php" class="editContent sub-number">1</a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">On time Service</a><a
-                  href="blog-single.php" class="editContent sub-number">4</a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Mobile Bank</a> <a
-                  href="blog-single.php" class="editContent sub-number">6</a></li>
-              <li class="propClone"><a href="blog-single.php" class="editContent">Best Support</a><a
-                  href="blog-single.php" class="editContent sub-number">2</a></li>
+              <li class="propClone"><a href="#" class="editContent">Advice and Guides</a> <a
+                  href="#" class="editContent sub-number">5</a></a></li>
+              <li class="propClone"><a href="#" class="editContent">Mobile Bank</a> <a
+                  href="#" class="editContent sub-number">6</a></li>
+              <li class="propClone"><a href="#" class="editContent">Professional Services</a><a
+                  href="#" class="editContent sub-number">3</a></li>
+              <li class="propClone"><a href="#" class="editContent">Making Internet </a><a
+                  href="#" class="editContent sub-number">1</a></li>
+              <li class="propClone"><a href="#" class="editContent">On time Service</a><a
+                  href="#" class="editContent sub-number">4</a></li>
+              <li class="propClone"><a href="#" class="editContent">Mobile Bank</a> <a
+                  href="#" class="editContent sub-number">6</a></li>
+              <li class="propClone"><a href="#" class="editContent">Best Support</a><a
+                  href="#" class="editContent sub-number">2</a></li>
             </ul>
           </div>
           <!--Blog Archives-->

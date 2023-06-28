@@ -13,6 +13,7 @@ try {
         $createTableSql = "CREATE TABLE $tableName (
             id INT(11) AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(255) NOT NULL,
+            category VARCHAR(255) NOT NULL,
             post_img VARCHAR(255) NOT NULL,
             content TEXT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -24,6 +25,7 @@ try {
     if (isset($_POST['upload'])) {
         // Retrieve the form data
         $title = $_POST["title"];
+        $category = $_POST["category"];
         $content = $_POST["content"];
 
         // Retrieve the uploaded file
@@ -38,11 +40,12 @@ try {
 
             if (move_uploaded_file($post_img_tmp, $target_file)) {
                 // Prepare the SQL statement
-                $sql = "INSERT INTO blog_posts (title, post_img, content) VALUES (:title, :post_img, :content)";
+                $sql = "INSERT INTO blog_posts (title, category, post_img, content) VALUES (:title, :category, :post_img, :content)";
                 $stmt = $pdo->prepare($sql);
 
                 // Bind the parameters
                 $stmt->bindParam(":title", $title);
+                $stmt->bindParam(":category", $category);
                 $stmt->bindParam(":post_img", $post_img);
                 $stmt->bindParam(":content", $content);
 
@@ -82,14 +85,16 @@ try {
 </head>
 
 <body>
-    <section class=" w3l-header-4 header-sticky">
+    <section class="w3l-header-4 header-sticky">
         <header class="absolute-top">
             <div class="container-fluid pr-lg-0">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="nav-link" href="index.php"><img class="logo p-1 float-left"
-                            src="assets/images/Molseka6.jpg" alt="Molseka logo"><span>
+                    <a class="nav-link" href="index.php">
+                        <img class="logo p-1 float-left" src="assets/images/Molseka6.jpg" alt="Molseka logo">
+                        <span>
                             <h3 class="m-4 fw-bold text-nowrap">MOLSEKA Global Investment Company Ltd.</h3>
-                        </span></a>
+                        </span>
+                    </a>
                     <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse"
                         data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -108,36 +113,35 @@ try {
                             <li class="nav-item dropdown @@pages__active">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    pages
+                                    Pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="services.php">Services</a>
-                                    <a class="dropdown-item " href="blog.php" class="drop-text">Blog</a>
-                                    <a class="dropdown-item" href="blog-single.php" class="drop-text">Blog Single</a>
-                                    <a class="dropdown-item" href="landing-page.php" class="drop-text">landing page</a>
+                                    <a class="dropdown-item" href="blog.php">Blog</a>
+                                    <a class="dropdown-item" href="blog-single.php">Blog Single</a>
+                                    <a class="dropdown-item" href="landing-page.php">Landing Page</a>
                                 </div>
                             </li>
                             <li class="nav-item @@contact__active">
                                 <a class="nav-link" href="contact.php">Contact</a>
                             </li>
                             <li class="nav-item ml-lg-3">
-                                <a class="nav-link phone" href="tel:+(234)-123-456-7890"><span
-                                        class="fa fa-volume-control-phone"></span> +(234)-123-456-7890</a>
+                                <a class="nav-link phone" href="tel:+(234)-123-456-7890">
+                                    <span class="fa fa-volume-control-phone"></span> +(234)-123-456-7890
+                                </a>
                             </li>
                             <li class="nav-item ml-lg-3">
-                                <a href="http://localhost/sahcoop/index.php" target="_blank"><img
-                                        class="logo p-1 float-right" src="assets/images/Molseka1.jpg"
-                                        alt="Molseka logo"></a>
+                                <a href="http://localhost/sahcoop/index.php" target="_blank">
+                                    <img class="logo p-1 float-right" src="assets/images/Molseka1.jpg"
+                                        alt="Molseka logo">
+                                </a>
                             </li>
                         </ul>
                     </div>
-            </div>
-
-            </nav>
+                </nav>
             </div>
         </header>
     </section>
-
     <script src="assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
     <!--bootstrap working-->
     <script src="assets/js/bootstrap.min.js"></script>
@@ -160,23 +164,42 @@ try {
                         <div class="card shadow">
                             <div class="card-body">
                                 <h1 class="card-title text-center mb-4">Post Upload Form</h1>
-                                <form method="post" action="upload_post.php" class="needs-validation" enctype="multipart/form-data" needs-validation>
+                                <form method="post" action="upload_post.php" class="needs-validation"
+                                    enctype="multipart/form-data" needs-validation>
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Title</label>
                                         <input class="form-control" type="text" name="title" id="title" required>
                                         <div class="invalid-feedback">Please enter post title.</div>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="row">
+                                    <div class="mb-3 col">
+                                        <label for="post_img" class="form-label">Category</label>
+                                        <select class="form-control" name="category" id="category" required>
+                                            <option readonly>Select one option</option>
+                                            <option value="Advice and Guides">Advice and Guides</option>
+                                            <option value="Mobile Bank">Mobile Bank</option>
+                                            <option value="Professional Services">Professional Services</option>
+                                            <option value="Making Internet">Making Internet</option>
+                                            <option value="On time Service">On time Service</option>
+                                            <option value="Investments">Investments</option>
+                                            <option value="Mutual Funds">Mutual Funds</option>
+                                        </select>
+                                        <div class="invalid-feedback">Please select a category.</div>
+                                    </div>
+                                    <div class="mb-3 col">
                                         <label for="post_img" class="form-label">Upload post's image</label>
                                         <input type="file" class="form-control" id="post_img" name="post_img" required>
                                         <div class="invalid-feedback">Please upload an image for the post.</div>
                                     </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="content" class="form-label">Content</label>
-                                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                                        <textarea class="form-control" id="content" name="content" rows="5"
+                                            required></textarea>
                                         <div class="invalid-feedback">Please enter the content of the post.</div>
                                     </div>
-                                    <button type="submit" name="upload" class="btn btn-primary btn-register form-control">Upload post!</button>
+                                    <button type="submit" name="upload"
+                                        class="btn btn-primary btn-register form-control">Upload post!</button>
                                 </form>
                             </div>
                         </div>
