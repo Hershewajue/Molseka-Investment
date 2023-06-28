@@ -355,7 +355,7 @@ if ($blogPost) {
               echo '<li class="font-weight-bold editContent">' . $date . '</li>';
               echo '</ul>';
               echo '<p class="para editContent mt-2">' . $comment['messages'] . '</p>';
-              echo '<h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>';
+              //echo '<h6><a href="#comment" class="replay editContent"><span class="fa fa-reply"></span> Reply</a></h6>';
               echo '</div>';
               echo '</div>';
               echo '</div>';
