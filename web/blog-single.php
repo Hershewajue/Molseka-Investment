@@ -193,6 +193,9 @@ if ($blogPost) {
               // Extract only the date from the created_at column
               $date = date('F d', strtotime($row['created_at']));
               $postId = $row['id'];
+              $title = implode(' ', array_slice(explode(' ', $row['title']), 0, 10));
+              $title .= '...';
+              
               ?>
               <div class="blog-right-side-post editContent">
                 <div class="single-blog-image">
@@ -202,7 +205,7 @@ if ($blogPost) {
                 </div>
                 <div class="single-blog-left">
                   <h6>
-                    <a href="blog-single.php?id=<?php echo $postId; ?>" class="editContent"><?php echo $row['title']; ?></a>
+                    <a href="blog-single.php?id=<?php echo $postId; ?>" class="editContent"><?php echo $title; ?></a>
                   </h6>
                   <span class="editContent">
                     <?php echo $date; ?>
@@ -288,27 +291,30 @@ if ($blogPost) {
           </div>
           <!-- gallery -->
           <!-- Blog Archives-->
-          <div class="category-list editContente blog-right-single">
-            <div class="comments-grid-right ">
-              <h5 class="editContent">Categories</h5>
-            </div>
-            <ul>
-              <li class="propClone"><a href="#" class="editContent">Advice and Guides</a> <a
-                  href="#" class="editContent sub-number">5</a></a></li>
-              <li class="propClone"><a href="#" class="editContent">Mobile Bank</a> <a
-                  href="#" class="editContent sub-number">6</a></li>
-              <li class="propClone"><a href="#" class="editContent">Professional Services</a><a
-                  href="#" class="editContent sub-number">3</a></li>
-              <li class="propClone"><a href="#" class="editContent">Making Internet </a><a
-                  href="#" class="editContent sub-number">1</a></li>
-              <li class="propClone"><a href="#" class="editContent">On time Service</a><a
-                  href="#" class="editContent sub-number">4</a></li>
-              <li class="propClone"><a href="#" class="editContent">Mobile Bank</a> <a
-                  href="#" class="editContent sub-number">6</a></li>
-              <li class="propClone"><a href="#" class="editContent">Best Support</a><a
-                  href="#" class="editContent sub-number">2</a></li>
-            </ul>
-          </div>
+          <?php
+require_once('connect.php');
+
+// Fetch count for each category from the 'category' table
+$sql = "SELECT category, COUNT(*) as category_count FROM blog_posts GROUP BY category";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<div class="category-list editContente blog-right-single">
+  <div class="comments-grid-right">
+    <h5 class="editContent">Categories</h5>
+  </div>
+  <ul>
+    <?php foreach ($categories as $category) : ?>
+      <li class="propClone">
+        <a href="blog.php" class="editContent"><?php echo $category['category']; ?></a>
+        <a href="blog.php" class="editContent sub-number"><?php echo $category['category_count']; ?></a>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
           <!--Blog Archives-->
         </div>
       </div>
@@ -341,7 +347,7 @@ if ($blogPost) {
             $stmt->bindParam(":post_id", $postId);
             $stmt->execute();
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            
             foreach ($comments as $comment) {
               $date = date('F d', strtotime($comment['created_at']));
               echo '<div class="media-comments editContent">';
