@@ -154,8 +154,7 @@ if ($blogPost) {
                   $commentCount = $result['comment_count'];
                   ?>
                   <li class="propClone">
-                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (
-                      <?php echo $commentCount; ?>)
+                    <p class="blog-para editContent price"><span class="fa fa-comment-o"></span> Comment (<?php echo $commentCount; ?>)
                     </p>
                   </li>
                 </ul>
@@ -333,8 +332,7 @@ if ($blogPost) {
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
           $commentCount = $result['comment_count'];
           ?>
-          <h3 class="aside-title editContent">Recent Comments (
-            <?php echo $commentCount; ?>)
+          <h3 class="aside-title editContent">Recent Comments (<?php echo $commentCount; ?>)
           </h3>
           <div class="comments-grids">
             <?php
