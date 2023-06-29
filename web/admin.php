@@ -24,14 +24,13 @@
 
     <!-- logo start -->
     <div class="logo">
-      <a href="admin.php">
-        <img src="asset/images/Molseka1.jpg" alt="Your logo" title="Your logo" class="img-fluid" style="height:35px;" />
-      </a>
+      <h1><a href="admin.php">Molseka</a><span><p>Global investment Company Limited</p></span></h1>
+      
     </div>
     <!-- //image logo -->
 
     <div class="logo-icon text-center">
-      <a href="index-2.html" title="logo"><img src="assets/images/logo.png" alt="logo-icon"> </a>
+      <a href="admin.php" title="logo"><img src="assets/images/Molseka6.jpg" alt="logo-icon"> </a>
     </div>
     <!-- //logo end -->
 
@@ -39,7 +38,7 @@
 
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
-        <li class="active"><a href="index-2.html"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
+        <li class="active"><a href="admin.php"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
         <li class="menu-list">
           <a href="#"><i class="fa fa-cogs"></i>
@@ -228,7 +227,7 @@
 
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb my-breadcrumb">
-        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="admin.php">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
       </ol>
     </nav>
