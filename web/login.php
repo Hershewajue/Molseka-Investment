@@ -8,7 +8,7 @@ try {
         $email = $_POST['email'];
         $pswd = $_POST['pswd'];
 
-        $stmt = $pdo->prepare("SELECT email, names, pswd FROM users_list WHERE (email=:email)");
+        $stmt = $pdo->prepare("SELECT email, names, pswd, clearance FROM users_list WHERE email = :email");
 
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -20,20 +20,25 @@ try {
             if ($pswd == $storedPswd) {
                 $names = $row['names'];
                 $email = $row['email'];
+                $clearance = $row['clearance'];
 
-                // Store user details in session variables
-                $_SESSION['names'] = $names;
-                /*
-                // Check if the previous page is available
-                if (!empty($_SERVER['HTTP_REFERER'])) {
-                    // Redirect to the previous page
-                    echo "<script>alert('Welcome, $email'); window.location.href = '".$_SERVER['HTTP_REFERER']."';</script>";
+                if ($clearance === "admin") {
+                    // Store user details in session variables
+                    $_SESSION['names'] = $names;
+                    /*
+                    // Check if the previous page is available
+                    if (!empty($_SERVER['HTTP_REFERER'])) {
+                        // Redirect to the previous page
+                        echo "<script>alert('Welcome, $email'); window.location.href = '".$_SERVER['HTTP_REFERER']."';</script>";
+                        exit();
+                    } else { */
+                    // Redirect to a default page
+                    echo "<script>alert('Welcome, $names'); window.location.href = 'admin.php';</script>";
                     exit();
-                } else { */
-                // Redirect to a default page
-                echo "<script>alert('Welcome, $names'); window.location.href = 'admin.php';</script>";
-                exit();
-                //}
+                    //}
+                } else {
+                    echo "<script>alert('Access denied. You must be an admin to login.');</script>";
+                }
             } else {
                 echo "<script>alert('Incorrect password.');</script>";
             }
@@ -46,6 +51,7 @@ try {
 }
 $conn = null;
 ?>
+
 <!doctype html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
@@ -95,9 +101,7 @@ $conn = null;
                         </div>
                         <div class="d-flex align-items-center flex-wrap justify-content-between">
                             <button type="submit" name="login" class="btn btn-primary btn-style mt-4">Login now</button>
-                            <p class="signup mt-4">Don’t have an account? <a href="register.php"
-                                    class="signuplink">Sign
-                                    up</a></p>
+                            <p class="backtohome mt-4"><a href="forgot-password.php" class="back">Rest Admin Password</a></p>
                         </div>
                     </form>
                     <!-- //form -->
