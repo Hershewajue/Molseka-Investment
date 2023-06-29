@@ -147,6 +147,7 @@
           </div>
           <div class="row">
             <div class="map-content-9 col-lg-6">
+              
               <?php
               require_once('connect.php');
 
