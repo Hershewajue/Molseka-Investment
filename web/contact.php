@@ -160,13 +160,13 @@
                 $checkTableExists = $pdo->query("SHOW TABLES LIKE '$tableName'");
                 if ($checkTableExists->rowCount() == 0) {
                   $createTableSql = "CREATE TABLE $tableName (
-            id INT(11) AUTO_INCREMENT PRIMARY KEY,
-            names VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            msubject VARCHAR(255) NOT NULL,
-            messages TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )";
+                    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+                    names VARCHAR(255) NOT NULL,
+                    email VARCHAR(255) NOT NULL,
+                    msubject VARCHAR(255) NOT NULL,
+                    messages TEXT NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )";
                   $pdo->exec($createTableSql);
                 }
 
