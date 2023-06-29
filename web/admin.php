@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Collective Admin Panel a Flat Bootstrap Responsive Website Template | Home :: W3Layouts</title>
+  <title>Molseka Admin Panel :: Home </title>
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-liberty.css">
@@ -24,7 +24,7 @@
 
     <!-- logo start -->
     <div class="logo">
-      <h1><a href="admin.php">Molseka</a><span><p>Global investment Company Limited</p></span></h1>
+      <h1><a href="admin.php">Molseka</a></h1>
       
     </div>
     <!-- //image logo -->
